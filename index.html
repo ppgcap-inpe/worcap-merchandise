@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorCAP - Merchandise</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+</head>
+<body>
+
+    <header>
+       <img src="assets/wrcap25.png" alt="Logo da Empresa" id="company-logo">
+        
+        <div class="header-text">
+            <h1>Merchandise</h1>
+            <p> </p>
+        </div>
+    </header>
+
+    <main>
+        <section id="products-section">
+            </section>
+
+        <aside id="cart-section">
+            <button id="close-cart-btn" class="close-cart-button">&times;</button>
+            
+            <h2>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
+                Carrinho
+            </h2>
+            <div id="cart-items">
+                <p>Seu carrinho está vazio.</p>
+            </div>
+            <div id="cart-summary">
+                <p>Total: <span id="cart-total">R$ 0,00</span></p>
+                <button id="checkout-button" disabled>Finalizar Pedido</button>
+            </div>
+        </aside>
+    </main>
+
+    <div id="checkout-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Informações do Pedido</h2>
+            <form id="checkout-form">
+                <label for="customer-name">Nome Completo:</label>
+                <input type="text" id="customer-name" required>
+
+                <label for="customer-phone">Telefone (com DDD):</label>
+                <input type="tel" id="customer-phone" placeholder="11999998888" required>
+
+                <label for="customer-email">Email:</label>
+                <input type="email" id="customer-email" required>
+
+                <button type="submit">Gerar Nota e Abrir WhatsApp</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="payment-modal" class="modal">
+         <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Realize o Pagamento</h2>
+            <p>Escaneie o QR Code abaixo com o app do seu banco ou use o link de pagamento.</p>
+            <canvas id="qr-code"></canvas>
+            <a href="#" id="payment-link" target="_blank">Clique aqui para pagar</a>
+            <p class="small-text">Após o pagamento, seu pedido será processado.</p>
+        </div>
+    </div>
+    
+    <div id="confirmation-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            
+            <div class="success-icon">
+                <svg viewBox="0 0 52 52">
+                    <circle cx="26" cy="26" r="25" fill="none"/>
+                    <path fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+            </div>
+
+            <h2>Pedido Gerado com Sucesso!</h2>
+            <p>A conversa no WhatsApp foi aberta em uma nova aba e o PDF do seu pedido foi baixado.</p>
+            <p class="instruction"><strong>Não se esqueça de anexar o PDF na conversa!</strong></p>
+            <p>Feche esta janela para continuar para o pagamento.</p>
+        </div>
+    </div>
+    
+    <script src="dataProducts.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,591 @@
+/* style.css (Versão Melhorada) */
+
+/* 1. VARIÁVEIS GLOBAIS E ESTILOS DE BASE
+----------------------------------------------------------------*/
+:root {
+    --primary-color: #004D80;
+    --secondary-color: #004D80; /* Usado para botões e links */
+    --accent-color: #FEAE00; /* Cor de destaque para seleção */
+    --background-color: #f4f6f9; /* Um cinza mais suave */
+    --card-bg-color: #ffffff;
+    --text-color: #333;
+    --text-light-color: #ffffff;
+    --border-color: #e0e0e0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* 2. CABEÇALHO (HEADER)
+----------------------------------------------------------------*/
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    gap: 1rem; 
+    flex-wrap: wrap; 
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#company-logo {
+    height: 130px;
+    width: auto;
+}
+
+.header-text h1 {
+    font-size: 1.9rem;
+}
+
+/* 3. LAYOUT PRINCIPAL (MAIN)
+----------------------------------------------------------------*/
+main {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1.5rem 1rem;
+    gap: 1.5rem;
+}
+
+#products-section {
+    flex: 3;
+    min-width: 300px; /* Garante que a seção não fique muito espremida */
+}
+
+/* 4. CARDS DE PRODUTO
+----------------------------------------------------------------*/
+.category-container {
+    margin-bottom: 3rem;
+}
+
+.category-title {
+    font-size: 1.75rem;
+    border-bottom: 3px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    text-transform: capitalize;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.product-card {
+    background-color: var(--card-bg-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.product-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 1rem 1.25rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.product-info p {
+    font-size: 0.95rem;
+    color: #666;
+    flex-grow: 1;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.product-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0.5rem 0 1rem 0;
+}
+
+.add-to-cart-btn {
+    background-color: var(--secondary-color);
+    color: var(--text-light-color);
+    border: none;
+    padding: 0.9rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.add-to-cart-btn:hover:not(:disabled) {
+    background-color: #003a66; /* Um tom mais escuro do primário */
+}
+
+.add-to-cart-btn:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+    color: #7f8c8d;
+}
+
+/* 5. SELETORES DE TAMANHO (NOVO ESTILO)
+----------------------------------------------------------------*/
+.size-selector {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.size-selector button {
+    flex-grow: 1;
+    padding: 0.6rem;
+    border: 1px solid var(--border-color);
+    background-color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.size-selector button:hover {
+    border-color: var(--accent-color);
+}
+
+.size-selector button.selected {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    border-color: var(--accent-color);
+}
+
+
+/* 6. CARRINHO DE COMPRAS (SIDEBAR E BARRA FIXA)
+----------------------------------------------------------------*/
+#cart-section {
+    flex: 1;
+    min-width: 320px;
+    background-color: var(--card-bg-color);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    align-self: flex-start; /* Alinha o carrinho no topo */
+    position: sticky; /* Faz o carrinho acompanhar o scroll */
+    top: 20px;
+}
+
+#cart-section h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+#cart-section h2 svg { /* Estilo para o ícone SVG */
+    width: 28px;
+    height: 28px;
+    fill: var(--primary-color);
+}
+
+#cart-items {
+    max-height: 400px; /* Limita a altura em carrinhos longos */
+    overflow-y: auto; /* Adiciona scroll se necessário */
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cart-item-info {
+    flex-grow: 1;
+    margin-right: 1rem;
+}
+
+.cart-item-info span {
+    display: block;
+}
+
+.cart-item-info .item-name {
+    font-weight: 600;
+}
+
+.cart-item-info .item-price {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.quantity-btn {
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 26px; /* Ajuste para centralização */
+    text-align: center;
+}
+
+#cart-summary {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+#cart-summary p {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+#checkout-button {
+    width: 100%;
+    padding: 1rem;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#checkout-button:hover:not(:disabled) {
+    background-color: #229954;
+}
+
+/* 7. MODAIS
+----------------------------------------------------------------*/
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1001; 
+    left: 0; top: 0; 
+    width: 100%; height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.6);
+    animation: fadeIn 0.3s;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Estilos para o Conteúdo do Modal de Confirmação */
+#confirmation-modal .modal-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Verde sucesso */
+    margin-bottom: 1rem;
+}
+
+#confirmation-modal .modal-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+}
+
+#confirmation-modal .modal-content .instruction {
+    font-size: 1.1rem;
+    background-color: #fffbe6; /* Fundo amarelo claro para destaque */
+    border: 1px solid #ffe58f;
+    padding: 0.75rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Animação do Ícone de Sucesso */
+.success-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem auto;
+}
+
+.success-icon svg {
+    width: 100%;
+    display: block;
+}
+
+.success-icon circle {
+    stroke-width: 4;
+    stroke: #27ae60;
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.success-icon path {
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke: #27ae60;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+#checkout-form { display: flex; flex-direction: column; text-align: left; gap: 1rem; }
+#checkout-form input { padding: 0.8rem; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; }
+#checkout-form button { padding: 1rem; background-color: var(--secondary-color); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: 600; }
+#qr-code { max-width: 250px; height: auto; margin: 1rem auto; }
+#payment-link { display: inline-block; margin-top: 1rem; font-weight: bold; color: var(--secondary-color); }
+.small-text { font-size: 0.8rem; color: #777; margin-top: 1rem; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* Botão de fechar para o carrinho mobile */
+.close-cart-button {
+    display: none; /* Escondido por padrão */
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: #e0e0e0;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+
+/* 8. RESPONSIVIDADE (MOBILE)
+----------------------------------------------------------------*/
+@media (max-width: 992px) {
+    #cart-section {
+        position: static;
+    }
+}
+
+
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+        /* O padding-bottom não é mais necessário */
+    }
+
+    #products-section {
+        padding-right: 0;
+    }
+
+    /* ### INÍCIO DA REFORMULAÇÃO DO CARRINHO MOBILE ### */
+
+    #cart-section {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        padding: 0;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 1000; /* Garante que fique acima de outros elementos */
+        transition: all 0.3s ease;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        background-color: var(--accent-color);
+        /* Remove qualquer influência do layout pai */
+        margin: 0;
+        flex: initial;
+        min-width: initial;
+        align-self: initial;
+        top: initial;
+    }
+    #cart-section > h2 {
+        display: none;
+    }
+
+    #cart-section h2, 
+    #cart-items, 
+    #checkout-button,
+    #cart-summary p {
+        display: none;
+    }
+    
+    #cart-section #cart-summary {
+        margin: 0;
+        padding: 0;
+        border: none;
+    }
+    
+    #cart-section h2 svg {
+        display: block !important;
+        width: 30px;
+        height: 30px;
+        fill: var(--text-light-color);
+    }
+
+    #cart-section::before {
+        content: '';
+        display: block;
+        width: 30px;
+        height: 30px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512' fill='white'%3E%3Cpath d='M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z'/%3E%3C/svg%3E");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    
+    /* Badge de quantidade */
+    #cart-section::after {
+        content: attr(data-count);
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+
+    #cart-section.cart-open::before {
+        display: none;
+    }
+    
+    /* Estado Aberto */
+    #cart-section.cart-open {
+        width: 100%;
+        height: 85vh;
+        bottom: 0;
+        right: 0;
+        border-radius: 16px 16px 0 0;
+        padding: 1.5rem;
+        background-color: var(--card-bg-color);
+        display: block;
+    }
+    
+    #cart-section.cart-open h2 {
+        display: flex;
+        color: var(--text-color);
+        position: relative;
+        padding-right: 30px;
+    }
+    
+    #cart-section.cart-open h2 svg {
+        fill: var(--primary-color);
+        width: 28px;
+        height: 28px;
+    }
+    
+    #cart-section.cart-open #cart-items {
+        display: block;
+        max-height: calc(80vh - 200px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    #cart-section.cart-open #cart-summary {
+        display: block;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-color);
+    }
+
+    #cart-section.cart-open #cart-summary p,
+    #cart-section.cart-open #checkout-button {
+        display: flex;
+    }
+    
+    /* Botão de fechar */
+    .close-cart-button {
+        display: none;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: transparent;
+        border: none;
+        font-size: 24px;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        cursor: pointer;
+        z-index: 1001;
+        color: var(--text-color);
+    }
+    
+    #cart-section.cart-open .close-cart-button {
+        display: block;
+    }
+    
+    /* Remove o badge quando aberto */
+    #cart-section.cart-open::after {
+        display: none;
+    }
+}
