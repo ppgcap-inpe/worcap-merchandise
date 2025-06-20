@@ -35,7 +35,7 @@ const productsData = [
     price: 75.00,
     category: "camiseta",
     sizes: ["P", "M", "G", "GG"],
-    description: "Sacola ecológica feita de algodão cru, reutilizável e estilosa."
+    description: "Camiseta 100% algodão, confortável e versátil para o dia a dia"
   },
   {
     id: 5,
@@ -43,7 +43,7 @@ const productsData = [
     photo: "assets/produtos/copos/25_anos.gif",
     price: 15.00,
     category: "copo",
-    description: "Copo de 500ml edição limitada de 25 anos do WorCAP.",
+    description: "Copo de 500ml edição limitada de 25 anos do WorCAP",
   },
   {
     id: 6,
