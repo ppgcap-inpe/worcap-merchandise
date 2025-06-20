@@ -48,7 +48,7 @@ const productsData = [
   {
     id: 6,
     name: "Copo Cordel",
-    photo: "assets/produtos/copos/Cordel.gif",
+    photo: "https://www.meucopoeco.com.br/customizer/?id_produto=59&medida=2&ferramenta=1749693678850.png",
     price: 15.00,
     category: "copo",
     description: "Copo de 500ml com temática cordel."
