@@ -4,7 +4,7 @@ const productsData = [
   {
     id: 1,
     name: "Camiseta Gato na Caixa",
-    photo: "assets/produtos/camisetas/cam_gatocaixa.jpeg",
+    photo: "assets/produtos/camisetas/cam_gatocaixa.png",
     price: 75.00,
     category: "camiseta",
     description: "Camiseta 100% algodão, confortável e versátil para o dia a dia.",
@@ -13,7 +13,7 @@ const productsData = [
   {
     id: 2,
     name: "Camiseta Troca Cultural",
-    photo: "assets/produtos/camisetas/cam_trocacultu.jpeg",
+    photo: "assets/produtos/camisetas/cam_trocacultu.png",
     price: 75.00,
     category: "camiseta",
     sizes: ["P", "M", "G", "GG"],
@@ -22,7 +22,7 @@ const productsData = [
   {
     id: 3,
     name: "Camiseta Schrödinger",
-    photo: "assets/produtos/camisetas/cam_einsten.jpeg",
+    photo: "assets/produtos/camisetas/cam_einsten.png",
     price: 75.00,
     category: "camiseta",
     sizes: ["P", "M", "G", "GG"],
@@ -31,7 +31,7 @@ const productsData = [
   {
     id: 4,
     name: "Camiseta Yemoja",
-    photo: "assets/produtos/camisetas/cam_yemoja.jpeg",
+    photo: "assets/produtos/camisetas/cam_yemoja.png",
     price: 75.00,
     category: "camiseta",
     sizes: ["P", "M", "G", "GG"],
