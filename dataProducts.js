@@ -13,7 +13,7 @@ const productsData = [
   {
     id: 2,
     name: "Camiseta Troca Cultural",
-    photo: "assets/produtos/camisetas/cam_trocacultu.jpeg",
+    photo: "produtos/camisetas/cam_trocacultu.jpeg",
     price: 75.00,
     category: "camiseta",
     sizes: ["P", "M", "G", "GG"],
