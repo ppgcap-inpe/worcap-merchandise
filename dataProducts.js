@@ -48,7 +48,7 @@ const productsData = [
   {
     id: 6,
     name: "Copo Cordel",
-    photo: "https://drive.google.com/file/d/1Q8XnYfMADnL2feJQUO_zFUW1EBxyOWMd",
+    photo: "assets/produtos/copos/Cordel.gif",
     price: 15.00,
     category: "copo",
     description: "Copo de 500ml com temática cordel."
