@@ -4,7 +4,7 @@ const productsData = [
   {
     id: 1,
     name: "Camiseta Gato na Caixa",
-    photo: "produtos/camisetas/cam_gatocaixa.jpeg",
+    photo: "assets/produtos/camisetas/cam_gatocaixa.jpeg",
     price: 75.00,
     category: "camiseta",
     description: "Camiseta 100% algodão, confortável e versátil para o dia a dia.",
@@ -13,7 +13,7 @@ const productsData = [
   {
     id: 2,
     name: "Camiseta Troca Cultural",
-    photo: "produtos/camisetas/cam_trocacultu.jpeg",
+    photo: "assets/produtos/camisetas/cam_trocacultu.jpeg",
     price: 75.00,
     category: "camiseta",
     sizes: ["P", "M", "G", "GG"],
@@ -22,7 +22,7 @@ const productsData = [
   {
     id: 3,
     name: "Camiseta Schrödinger",
-    photo: "produtos/camisetas/cam_einsten.jpeg",
+    photo: "assets/produtos/camisetas/cam_einsten.jpeg",
     price: 75.00,
     category: "camiseta",
     sizes: ["P", "M", "G", "GG"],
@@ -31,7 +31,7 @@ const productsData = [
   {
     id: 4,
     name: "Camiseta Yemoja",
-    photo: "produtos/camisetas/cam_yemoja.jpeg",
+    photo: "assets/produtos/camisetas/cam_yemoja.jpeg",
     price: 75.00,
     category: "camiseta",
     sizes: ["P", "M", "G", "GG"],
@@ -40,7 +40,7 @@ const productsData = [
   {
     id: 5,
     name: "Copo 25 anos WorCAP",
-    photo: "produtos/copos/25_anos.gif",
+    photo: "assets/produtos/copos/25_anos.gif",
     price: 15.00,
     category: "copo",
     description: "Copo de 500ml edição limitada de 25 anos do WorCAP.",
@@ -48,7 +48,7 @@ const productsData = [
   {
     id: 6,
     name: "Copo Cordel",
-    photo: "produtos/copos/Cordel.gif",
+    photo: "assets/produtos/copos/Cordel.gif",
     price: 15.00,
     category: "copo",
     description: "Copo de 500ml com temática cordel."
@@ -56,7 +56,7 @@ const productsData = [
   {
     id: 7,
     name: "Copo Delírio Científico",
-    photo: "produtos/copos/Delírio_científico_Translúcio.gif",
+    photo: "assets/produtos/copos/Delírio_científico_Translúcio.gif",
     price: 15.00,
     category: "copo",
     description: "Copo Translúcido de 500ml temático Delírio Científico, ilustrando um brainstorms de ideias."
@@ -64,7 +64,7 @@ const productsData = [
   {
     id: 8,
     name: "Copo Delírio Inpeano",
-    photo: "produtos/copos/Delírio_Inpeano.gif",
+    photo: "assets/produtos/copos/Delírio_Inpeano.gif",
     price: 15.00,
     category: "copo",
     description: "Copo de 500ml temático Delírio Inpeano, ilustrando a diversidade de áreas de estudo existente no INPE."
@@ -72,7 +72,7 @@ const productsData = [
   {
     id: 9,
     name: "Caneca 25 anos WorCAP",
-    photo: "produtos/canecas/Caneca_25 anos.png",
+    photo: "assets/produtos/canecas/Caneca_25 anos.png",
     price: 45.00,
     category: "caneca",
     description: "Caneca de cerâmica de 300ml com estampa exclusiva de 25 anos do WorCAP, ideal para café ou chá.",
@@ -80,7 +80,7 @@ const productsData = [
   {
     id: 10,
     name: "Caneca Cordel",
-    photo: "produtos/canecas/Caneca_Cordel.png",
+    photo: "assets/produtos/canecas/Caneca_Cordel.png",
     price: 45.00,
     category: "caneca",
     description: "Caneca de cerâmica de 300ml com estampa Cordel, ideal para café ou chá.",
@@ -88,7 +88,7 @@ const productsData = [
   {
     id: 11,
     name: "Caneca Delírio Científico",
-    photo: "produtos/canecas/Caneca_Delírio_Científico.png",
+    photo: "assets/produtos/canecas/Caneca_Delírio_Científico.png",
     price: 45.00,
     category: "caneca",
     description: "Caneca de cerâmica de 300ml com estampa exclusiva do Delírio Científico, ideal para café ou chá.",
