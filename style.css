@@ -11,6 +11,8 @@
     --text-color: #333;
     --text-light-color: #ffffff;
     --border-color: #e0e0e0;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -20,33 +22,46 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Montserrat', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
     background-color: var(--background-color);
     color: var(--text-color);
+    line-height: 1.6;
 }
 
 /* 2. CABEÇALHO (HEADER)
 ----------------------------------------------------------------*/
 header {
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-    gap: 1rem; 
-    flex-wrap: wrap; 
     background-color: var(--primary-color);
     color: var(--accent-color);
-    padding: 1.5rem 1rem;
+    padding: 1rem 1rem;
     text-align: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 #company-logo {
-    height: 130px;
+    height: 220px;
     width: auto;
+    margin-bottom: 0.5px;
+}
+
+.header-text {
+    text-align: center;
 }
 
 .header-text h1 {
-    font-size: 1.9rem;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 40px;;
+}
+
+.header-text p {
+    opacity: 0.9;
+    margin: 0;
+    margin-bottom: 40px;
 }
 
 /* 3. LAYOUT PRINCIPAL (MAIN)
@@ -54,13 +69,55 @@ header {
 main {
     display: flex;
     flex-wrap: wrap;
-    padding: 1.5rem 1rem;
+    padding: 2rem 1rem;
     gap: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 #products-section {
     flex: 3;
     min-width: 300px; /* Garante que a seção não fique muito espremida */
+}
+
+/* 3.5 NOVO: BARRA DE BUSCA
+----------------------------------------------------------------*/
+#search-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0 2rem;
+    padding: 0 1rem;
+}
+
+#search-input {
+    width: 80%;
+    max-width: 600px;
+    margin: auto;
+    padding: 1rem 1rem 1rem 3rem; /* Espaço à esquerda para o ícone */
+    font-size: 1rem;
+    border-radius: 30px;
+    border: 1px solid var(--border-color);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='%23aaa'%3E%3Cpath d='M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 1rem center;
+    box-shadow: var(--shadow);
+    background-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+#search-input:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.no-results-message {
+    font-size: 1.2rem;
+    color: #777;
+    text-align: center;
+    padding: 3rem;
+    width: 100%;
 }
 
 /* 4. CARDS DE PRODUTO
@@ -71,7 +128,7 @@ main {
 
 .category-title {
     font-size: 1.75rem;
-    border-bottom: 3px solid var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
     padding-bottom: 0.5rem;
     margin-bottom: 1.5rem;
     text-transform: capitalize;
@@ -80,13 +137,13 @@ main {
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
+    gap: 2rem;
 }
 
 .product-card {
     background-color: var(--card-bg-color);
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -95,13 +152,15 @@ main {
 
 .product-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    box-shadow: var(--shadow-hover);
 }
 
 .product-card img {
     width: 100%;
-    height: 250px;
+    height: 400px;
     object-fit: cover;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
 }
 
 .product-info {
@@ -114,6 +173,7 @@ main {
 .product-info h3 {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
+    color: var(--primary-color);
 }
 
 .product-info p {
@@ -159,7 +219,7 @@ main {
 .size-selector {
     display: flex;
     gap: 0.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1rem 0;
 }
 
 .size-selector button {
@@ -191,7 +251,7 @@ main {
     min-width: 320px;
     background-color: var(--card-bg-color);
     padding: 1.5rem;
-    border-radius: 12px;
+    border-radius: 14px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     align-self: flex-start; /* Alinha o carrinho no topo */
     position: sticky; /* Faz o carrinho acompanhar o scroll */
@@ -292,20 +352,22 @@ main {
 }
 
 #checkout-button:hover:not(:disabled) {
-    background-color: #229954;
+    background-color: #0e5e2f;
 }
 
 /* 7. MODAIS
 ----------------------------------------------------------------*/
 .modal {
-    display: none; 
-    position: fixed; 
-    z-index: 1001; 
-    left: 0; top: 0; 
-    width: 100%; height: 100%; 
-    overflow: auto; 
-    background-color: rgba(0,0,0,0.6);
-    animation: fadeIn 0.3s;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
 }
 
 .modal-content {
@@ -317,6 +379,7 @@ main {
     max-width: 500px;
     position: relative;
     text-align: center;
+    animation: fadeIn 0.3s;
     box-shadow: 0 4px 20px rgba(0,0,0,0.2);
 }
 
@@ -390,10 +453,43 @@ main {
 
 #checkout-form { display: flex; flex-direction: column; text-align: left; gap: 1rem; }
 #checkout-form input { padding: 0.8rem; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; }
-#checkout-form button { padding: 1rem; background-color: var(--secondary-color); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: 600; }
+#checkout-form button { padding: 1rem; background-color: var(--primary-color); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: 600; }
+#payment-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza horizontalmente */
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+#copy-pix-key-btn {
+    background: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+#copy-pix-key-btn:hover {
+    background: #2980b9;
+}
+
+.copy-feedback {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    color: var(--accent-color);
+}
 #qr-code { max-width: 250px; height: auto; margin: 1rem auto; }
-#payment-link { display: inline-block; margin-top: 1rem; font-weight: bold; color: var(--secondary-color); }
+#payment-link { display: inline-block; margin-top: 1rem; font-weight: bold; color: var(--secondary-color);text-decoration: underline; }
 .small-text { font-size: 0.8rem; color: #777; margin-top: 1rem; }
+.payment-total {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
@@ -415,6 +511,21 @@ main {
     z-index: 1001;
 }
 
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
 
 /* 8. RESPONSIVIDADE (MOBILE)
 ----------------------------------------------------------------*/
@@ -453,7 +564,7 @@ main {
         transition: all 0.3s ease;
         overflow: hidden;
         box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        background-color: var(--accent-color);
+        background-color: var(--primary-color);
         /* Remove qualquer influência do layout pai */
         margin: 0;
         flex: initial;
@@ -588,4 +699,45 @@ main {
     #cart-section.cart-open::after {
         display: none;
     }
+}
+
+/* 9. NOVO: VISUALIZADOR DE PRODUTO
+----------------------------------------------------------------*/
+.product-viewer {
+    background-color: rgba(0,0,0,0.85); /* Fundo mais escuro */
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.85);
+}
+
+.modal-content-image {
+    margin: auto;
+    margin-top: 3%;
+    display: block;
+    max-width: 80%;
+    max-height: 85vh;
+    animation: zoomIn 0.3s ease-out;
+}
+
+/* Botão de fechar específico para o visualizador */
+.viewer-close-button {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 45px;
+    font-weight: bold;
+    text-shadow: 0 1px 5px rgba(0,0,0,0.7);
+}
+
+.viewer-close-button:hover,
+.viewer-close-button:focus {
+    color: #ccc;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }

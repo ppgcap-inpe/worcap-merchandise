@@ -1,73 +1,75 @@
-// script.js
-
 document.addEventListener('DOMContentLoaded', () => {
-    // Importante: Configure estas variáveis
-    const SEU_NUMERO_WHATSAPP = "5511969961123"; // Coloque seu número com código do país e DDD
-    const SEU_LINK_PAGAMENTO = "00020126770014BR.GOV.BCB.PIX0136f5f81f14-ba0d-456b-82fe-864b3e0feb100215Apoie o WorCAP.5204000053039865802BR5925Rafael Marinho de Andrade6009SAO PAULO621405104M31Gi9AR063048773"; // Link do Mercado Pago, PicPay, etc.
-    const SEU_PIX_COPIA_COLA = "00020126770014BR.GOV.BCB.PIX0136f5f81f14-ba0d-456b-82fe-864b3e0feb100215Apoie o WorCAP.5204000053039865802BR5925Rafael Marinho de Andrade6009SAO PAULO621405104M31Gi9AR063048773"; // Chave PIX para o QR Code
+    // Configurações
+    const SEU_NUMERO_WHATSAPP = "5511969961123";
+    const SEU_LINK_PAGAMENTO = "00020126580014BR.GOV.BCB.PIX0136ad731057-4699-4bc8-b66c-985b94e6a5035204000053039865802BR5925Andreza Cristina Barbieri6009SAO PAULO62140510y7TR3APyjf63040811";
+    const SEU_PIX_COPIA_COLA = "00020126580014BR.GOV.BCB.PIX0136ad731057-4699-4bc8-b66c-985b94e6a5035204000053039865802BR5925Andreza Cristina Barbieri6009SAO PAULO62140510y7TR3APyjf63040811";
 
-    // Referências aos elementos do DOM
-    const productsSection = document.getElementById('products-section');
-    const cartItemsContainer = document.getElementById('cart-items');
-    const cartTotalSpan = document.getElementById('cart-total');
-    const checkoutButton = document.getElementById('checkout-button');
-    const checkoutModal = document.getElementById('checkout-modal');
-    const paymentModal = document.getElementById('payment-modal');
-    const confirmationModal = document.getElementById('confirmation-modal');
-    const closeButtons = document.querySelectorAll('.close-button');
-    const checkoutForm = document.getElementById('checkout-form');
-    const cartSection = document.getElementById('cart-section');
-    const closeCartButton = document.getElementById('close-cart-btn');
+    // Elementos DOM
+    const elements = {
+        productsSection: document.getElementById('products-section'),
+        cartItemsContainer: document.getElementById('cart-items'),
+        cartTotalSpan: document.getElementById('cart-total'),
+        checkoutButton: document.getElementById('checkout-button'),
+        checkoutModal: document.getElementById('checkout-modal'),
+        paymentModal: document.getElementById('payment-modal'),
+        confirmationModal: document.getElementById('confirmation-modal'),
+        closeButtons: document.querySelectorAll('.close-button'),
+        checkoutForm: document.getElementById('checkout-form'),
+        cartSection: document.getElementById('cart-section'),
+        closeCartButton: document.getElementById('close-cart-btn'),
+        productViewerModal: document.getElementById('product-viewer-modal'),
+        productViewerImage: document.getElementById('product-viewer-image'),
+        searchInput: document.getElementById('search-input'),
+        copyPixButton: document.getElementById('copy-pix-key-btn'),
+        copyFeedback: document.getElementById('copy-feedback'),
+        paymentTotalSpan: document.getElementById('payment-modal-total')
+    };
 
     let cart = [];
 
-    function renderProducts() {
-        const productsByCategory = productsData.reduce((acc, product) => {
+    // Função para renderizar produtos
+    function renderProducts(productsToRender = productsData) {
+        elements.productsSection.innerHTML = productsToRender.length === 0 
+            ? '<p class="no-results-message">Nenhum produto encontrado.</p>'
+            : createProductGrid(productsToRender);
+        
+        addEventListenersToProductCards();
+    }
+
+    function createProductGrid(products) {
+        const productsByCategory = products.reduce((acc, product) => {
             (acc[product.category] = acc[product.category] || []).push(product);
             return acc;
         }, {});
 
-        productsSection.innerHTML = '';
+        return Object.entries(productsByCategory).map(([category, items]) => `
+            <div class="category-container">
+                <h2 class="category-title">${category}</h2>
+                <div class="products-grid">
+                    ${items.map(product => `
+                        <div class="product-card">
+                            <img src="${product.photo}" alt="${product.name}">
+                            <div class="product-info">
+                                <h3>${product.name}</h3>
+                                <p>${product.description}</p>
+                                ${product.category === 'camiseta' && product.sizes 
+                                    ? `<div class="size-selector">${
+                                        product.sizes.map(size => 
+                                            `<button data-size="${size}">${size}</button>`
+                                        ).join('')
+                                    }</div>` 
+                                    : ''}
+                                <div class="product-price">R$ ${product.price.toFixed(2).replace('.', ',')}</div>
+                                <button class="add-to-cart-btn" data-id="${product.id}">Adicionar ao Carrinho</button>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `).join('');
+    }
 
-        for (const category in productsByCategory) {
-            const categoryContainer = document.createElement('div');
-            categoryContainer.className = 'category-container';
-
-            const categoryTitle = document.createElement('h2');
-            categoryTitle.className = 'category-title';
-            categoryTitle.textContent = category;
-            categoryContainer.appendChild(categoryTitle);
-
-            const productsGrid = document.createElement('div');
-            productsGrid.className = 'products-grid';
-
-            productsByCategory[category].forEach(product => {
-                const card = document.createElement('div');
-                card.className = 'product-card';
-
-                let sizeSelectorHTML = '';
-                if (product.category === 'camiseta' && product.sizes) {
-                    const sizeButtons = product.sizes.map(size => `<button data-size="${size}">${size}</button>`).join('');
-                    sizeSelectorHTML = `<div class="size-selector">${sizeButtons}</div>`;
-                }
-
-                card.innerHTML = `
-                    <img src="${product.photo}" alt="${product.name}">
-                    <div class="product-info">
-                        <h3>${product.name}</h3>
-                        <p>${product.description}</p>
-                        ${sizeSelectorHTML}
-                        <div class="product-price">R$ ${product.price.toFixed(2).replace('.', ',')}</div>
-                        <button class="add-to-cart-btn" data-id="${product.id}">Adicionar ao Carrinho</button>
-                    </div>
-                `;
-                productsGrid.appendChild(card);
-            });
-
-            categoryContainer.appendChild(productsGrid);
-            productsSection.appendChild(categoryContainer);
-        }
-
+    function addEventListenersToProductCards() {
         document.querySelectorAll('.product-card').forEach(card => {
             const addToCartBtn = card.querySelector('.add-to-cart-btn');
             const sizeSelector = card.querySelector('.size-selector');
@@ -79,7 +81,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 addToCartBtn.disabled = true;
 
                 sizeButtons.forEach(button => {
-                    button.addEventListener('click', () => {
+                    button.addEventListener('click', (e) => {
+                        e.stopPropagation();
                         sizeButtons.forEach(btn => btn.classList.remove('selected'));
                         button.classList.add('selected');
                         selectedSize = button.dataset.size;
@@ -87,7 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 });
 
-                addToCartBtn.addEventListener('click', () => {
+                addToCartBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
                     if (selectedSize) {
                         addToCart(productId, selectedSize);
                         sizeButtons.forEach(btn => btn.classList.remove('selected'));
@@ -97,11 +101,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
             } else { 
-                addToCartBtn.addEventListener('click', () => {
+                addToCartBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
                     addToCart(productId, null);
-
                 });
             }
+
+            // Visualizador de imagem
+            const productImage = card.querySelector('img');
+            productImage.addEventListener('click', () => {
+                elements.productViewerImage.src = productImage.src;
+                elements.productViewerModal.style.display = 'flex';
+            });
         });
     }
 
@@ -113,17 +124,24 @@ document.addEventListener('DOMContentLoaded', () => {
             existingItem.quantity++;
         } else {
             const product = productsData.find(p => p.id === productId);
-            cart.push({ ...product, quantity: 1, size: size, cartItemId: cartItemId });
+            if (product) {
+                cart.push({ 
+                    ...product, 
+                    quantity: 1, 
+                    size: size, 
+                    cartItemId: cartItemId 
+                });
+            }
         }
         updateCartDisplay();
     }
 
     function updateCartDisplay() {
         if (cart.length === 0) {
-            cartItemsContainer.innerHTML = '<p>Seu carrinho está vazio.</p>';
-            checkoutButton.disabled = true;
+            elements.cartItemsContainer.innerHTML = '<p>Seu carrinho está vazio.</p>';
+            elements.checkoutButton.disabled = true;
         } else {
-            cartItemsContainer.innerHTML = '';
+            elements.cartItemsContainer.innerHTML = '';
             cart.forEach(item => {
                 const itemElement = document.createElement('div');
                 itemElement.className = 'cart-item';
@@ -140,13 +158,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         <button class="quantity-btn plus-btn" data-cart-item-id="${item.cartItemId}">+</button>
                     </div>
                 `;
-                cartItemsContainer.appendChild(itemElement);
+                elements.cartItemsContainer.appendChild(itemElement);
             });
-            checkoutButton.disabled = false;
+            elements.checkoutButton.disabled = false;
         }
 
         const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-        cartTotalSpan.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+        elements.cartTotalSpan.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
     }
 
     function handleCartActions(event) {
@@ -168,8 +186,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         updateCartDisplay();
     }
-    
-    cartItemsContainer.addEventListener('click', handleCartActions);
 
     async function generateOrder(customerInfo) {
         const { jsPDF } = window.jspdf;
@@ -177,16 +193,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const orderDate = new Date().toLocaleDateString('pt-BR');
         const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
+        // Cabeçalho
         doc.setFontSize(18);
         doc.text("Resumo do Pedido", 15, 20);
         doc.setFontSize(12);
-        doc.text(`Data do Pedido: ${orderDate}`, 15, 30);
+        doc.text(`Data: ${orderDate}`, 15, 30);
         doc.text(`Cliente: ${customerInfo.name}`, 15, 40);
         doc.text(`Telefone: ${customerInfo.phone}`, 15, 50);
         doc.text(`Email: ${customerInfo.email}`, 15, 60);
         doc.line(15, 65, 195, 65);
-        doc.text("Itens do Pedido:", 15, 75);
 
+        // Itens
+        doc.text("Itens do Pedido:", 15, 75);
         let y = 85;
         cart.forEach(item => {
             if (y > 260) { doc.addPage(); y = 20; }
@@ -196,17 +214,21 @@ document.addEventListener('DOMContentLoaded', () => {
             y += 10;
         });
 
+        // Total
         doc.line(15, y, 195, y);
         y += 10;
         doc.setFontSize(14);
-        doc.text(`Valor Total: R$ ${total.toFixed(2).replace('.', ',')}`, 140, y);
+        doc.text(`Total: R$ ${total.toFixed(2).replace('.', ',')}`, 140, y);
         y += 15;
         doc.line(15, y, 195, y);
         y += 10;
+
+        // PIX
         doc.setFontSize(16);
-        doc.text("Pague com PIX", 15, y);
+        doc.text("Pagamento via PIX", 15, y);
         y += 10;
 
+        // QR Code
         const qrCanvas = document.createElement('canvas');
         new QRious({
             element: qrCanvas,
@@ -218,90 +240,140 @@ document.addEventListener('DOMContentLoaded', () => {
         doc.setFontSize(12);
         doc.text("Escaneie o QR Code:", 15, y);
         doc.addImage(qrImage, 'PNG', 15, y + 5, 50, 50);
-        doc.text("Ou use a chave PIX Copia e Cola:", 75, y);
+        doc.text("Ou copie a chave PIX:", 75, y);
         doc.setFontSize(10);
-        doc.text(SEU_PIX_COPIA_COLA, 75, y + 10, {maxWidth: 120});
-        doc.text("O seu pedido está disponível para retirada a partir do dia 09 de setembro de 2025, durante o WorCAP25.", 15, 75);
-        doc.text("Quaisquer dúvidas contate a equipe Organizadora.", 15, 75);
+        doc.text(SEU_PIX_COPIA_COLA, 75, y + 10, { maxWidth: 120 });
 
-        doc.save("worcap_merchandise_pedidos.pdf");
+        // Informações de retirada
+        y = 250;
+        doc.setFontSize(10);
+        doc.text("Retirada disponível a partir de 09/09/2025", 15, y);
+        doc.text("durante o WorCAP25.", 15, y + 5);
 
-        let whatsappMessage = `Olá! Gostaria de fazer um pedido:\n\n`;
+        doc.save("pedido_worcap.pdf");
+
+        // WhatsApp
+        let whatsappMessage = `Olá! Gostaria de confirmar meu pedido:\n\n`;
         cart.forEach(item => {
-            const itemName = item.size ? `*${item.name}* (Tamanho: *${item.size}*)` : `*${item.name}*`;
-            whatsappMessage += `${itemName} (x${item.quantity}) - R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}\n`;
+            const itemName = item.size ? `${item.name} (Tamanho: ${item.size})` : item.name;
+            whatsappMessage += `- ${itemName} (x${item.quantity}) - R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}\n`;
         });
         whatsappMessage += `\n*Total: R$ ${total.toFixed(2).replace('.', ',')}*`;
-        whatsappMessage += `\n\n*Meus dados:*\nNome: ${customerInfo.name}\nTelefone: ${customerInfo.phone}`;
-        whatsappMessage += `\n\n(O resumo detalhado com QR Code para pagamento está no PDF em anexo)`;
+        whatsappMessage += `\n\n*Dados do cliente:*\nNome: ${customerInfo.name}\nTelefone: ${customerInfo.phone}\nEmail: ${customerInfo.email}`;
+        whatsappMessage += `\n\n(Verifique o PDF anexo com os detalhes do pedido)`;
 
         const whatsappUrl = `https://wa.me/${SEU_NUMERO_WHATSAPP}?text=${encodeURIComponent(whatsappMessage)}`;
-        
         window.open(whatsappUrl, '_blank');
-        doc.save("worcap_merchandise_pedidos.pdf");
 
-        checkoutModal.style.display = 'none';
-        confirmationModal.style.display = 'block';
+        // Fecha o modal e mostra confirmação
+        elements.checkoutModal.style.display = 'none';
+        elements.confirmationModal.style.display = 'flex';
     }
-    
+
     function showPaymentModal() {
-        checkoutModal.style.display = 'none';
-        paymentModal.style.display = 'block';
-        const qrCanvas = document.getElementById('qr-code');
-        new QRious({ element: qrCanvas, value: SEU_PIX_COPIA_COLA, size: 250, foreground: 'black', level: 'H' });
-        document.getElementById('payment-link').href = SEU_LINK_PAGAMENTO;
+        elements.checkoutModal.style.display = 'none';
+        elements.paymentModal.style.display = 'flex';
+
+        const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        elements.paymentTotalSpan.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+        
+
+        // Atualiza QR Code
+        new QRious({ 
+            element: document.getElementById('qr-code'), 
+            value: SEU_PIX_COPIA_COLA, 
+            size: 200 
+        });
     }
 
-    checkoutButton.addEventListener('click', () => { checkoutModal.style.display = 'block'; });
+    function setupCopyPixButton() {
+        if (elements.copyPixButton) {
+            elements.copyPixButton.addEventListener('click', () => {
+                navigator.clipboard.writeText(SEU_PIX_COPIA_COLA).then(() => {
+                    elements.copyFeedback.textContent = 'Chave copiada!';
+                    elements.copyFeedback.style.opacity = '1';
+                    setTimeout(() => {
+                        elements.copyFeedback.style.opacity = '0';
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Falha ao copiar: ', err);
+                    elements.copyFeedback.textContent = 'Erro ao copiar';
+                    elements.copyFeedback.style.opacity = '1';
+                });
+            });
+        }
+    }
 
-    closeButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const modal = button.closest('.modal');
-            if (modal) {
-                modal.style.display = 'none';
-                if (modal.id === 'confirmation-modal') {
+    function initEventListeners() {
+        // Busca
+        elements.searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const filtered = productsData.filter(p => 
+                p.name.toLowerCase().includes(term) || 
+                p.category.toLowerCase().includes(term) || 
+                p.description.toLowerCase().includes(term)
+            );
+            renderProducts(filtered);
+        });
+
+        // Carrinho
+        elements.cartItemsContainer.addEventListener('click', handleCartActions);
+        elements.checkoutButton.addEventListener('click', () => {
+            elements.checkoutModal.style.display = 'flex';
+        });
+
+        // Modais
+        elements.closeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const modal = button.closest('.modal');
+                if (modal) {
+                    modal.style.display = 'none';
+                    if (modal.id === 'confirmation-modal') {
+                        showPaymentModal();
+                    }
+                }
+            });
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                e.target.style.display = 'none';
+                if (e.target.id === 'confirmation-modal') {
                     showPaymentModal();
                 }
             }
         });
-    });
 
-    window.addEventListener('click', (event) => {
-        if (event.target.classList.contains('modal')) {
-            const modal = event.target;
-            modal.style.display = 'none';
-            if (modal.id === 'confirmation-modal') {
-                showPaymentModal();
+        // Formulário
+        elements.checkoutForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const customerInfo = {
+                name: document.getElementById('customer-name').value,
+                phone: document.getElementById('customer-phone').value,
+                email: document.getElementById('customer-email').value
+            };
+            generateOrder(customerInfo);
+        });
+
+        // Carrinho mobile
+        elements.cartSection.addEventListener('click', (e) => {
+            if (!elements.cartSection.classList.contains('cart-open') && window.innerWidth <= 768) {
+                elements.cartSection.classList.add('cart-open');
             }
-        }
-    });
+        });
 
-    checkoutForm.addEventListener('submit', (event) => { 
-        event.preventDefault(); 
-        const customerInfo = { 
-            name: document.getElementById('customer-name').value, 
-            phone: document.getElementById('customer-phone').value, 
-            email: document.getElementById('customer-email').value 
-        }; 
-        generateOrder(customerInfo); 
-    });
+        elements.closeCartButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            elements.cartSection.classList.remove('cart-open');
+        });
+    }
 
-    // ### INÍCIO DA LÓGICA DO CARRINHO MOBILE ###
-    // Abre o carrinho ao clicar no botão flutuante
-    cartSection.addEventListener('click', (event) => {
-        if (!cartSection.classList.contains('cart-open') && window.innerWidth <= 768) {
-            cartSection.classList.add('cart-open');
-        }
-    });
+    function init() {
+        renderProducts();
+        updateCartDisplay();
+        setupCopyPixButton();
+        initEventListeners();
+    }
 
-    // Fecha o carrinho ao clicar no botão 'x'
-    closeCartButton.addEventListener('click', (event) => {
-        // CORREÇÃO: Impede que o clique no botão de fechar se propague para o cartSection
-        event.stopPropagation(); 
-        cartSection.classList.remove('cart-open');
-    });
-    // ### FIM DA LÓGICA DO CARRINHO MOBILE ###
-
-    renderProducts();
-    updateCartDisplay();
+    init();
 });
