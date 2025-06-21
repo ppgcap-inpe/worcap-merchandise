@@ -221,6 +221,8 @@ document.addEventListener('DOMContentLoaded', () => {
         doc.text("Ou use a chave PIX Copia e Cola:", 75, y);
         doc.setFontSize(10);
         doc.text(SEU_PIX_COPIA_COLA, 75, y + 10, {maxWidth: 120});
+        doc.text("O seu pedido está disponível para retirada a partir do dia 09 de setembro de 2025, durante o WorCAP25.", 15, 75);
+        doc.text("Quaisquer dúvidas contate a equipe Organizadora.", 15, 75);
 
         doc.save("worcap_merchandise_pedidos.pdf");
 
