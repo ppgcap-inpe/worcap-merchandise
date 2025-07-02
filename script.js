@@ -292,10 +292,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const doc = new jsPDF();
         const orderDate = new Date().toLocaleDateString('pt-BR');
         
+        // Recalcula o total final com descontos para o PDF
         let finalTotal = 0;
         const quantidadeDeCamisetas = cart.filter(item => item.category === 'camiseta' && !item.isGift).reduce((acc, item) => acc + item.quantity, 0);
         const isPromoCamisetaActive = quantidadeDeCamisetas >= 2;
 
+        // Cabeçalho
         doc.setFontSize(18);
         doc.text("Resumo do Pedido", 15, 20);
         doc.setFontSize(12);
@@ -305,25 +307,35 @@ document.addEventListener('DOMContentLoaded', () => {
         doc.text(`Email: ${customerInfo.email}`, 15, 60);
         doc.line(15, 65, 195, 65);
 
+        // Itens
         doc.text("Itens do Pedido:", 15, 75);
         let y = 85;
         cart.forEach(item => {
             if (y > 260) { doc.addPage(); y = 20; }
+            
             let itemPrice = item.price;
+            // Aplica o preço correto para promoções e brindes
             if (item.isGift) {
-                itemPrice = 0;
+                itemPrice = 0.00;
             } else if (item.category === 'camiseta' && isPromoCamisetaActive) {
                 itemPrice = 70.00;
             }
+            
             const itemTotal = itemPrice * item.quantity;
             finalTotal += itemTotal;
+
+            // --- MODIFICAÇÃO PARA ESPECIFICAR O BRINDE ---
             let itemName = item.size ? `${item.name} (Tamanho: ${item.size})` : item.name;
-            if(item.isGift) itemName = `${itemName} (BRINDE)`;
+            if(item.isGift) {
+                itemName = `${itemName} (BRINDE)`; // Adiciona a indicação de brinde
+            }
+
             doc.text(`- ${itemName} (x${item.quantity})`, 15, y);
             doc.text(`R$ ${itemTotal.toFixed(2).replace('.', ',')}`, 160, y);
             y += 10;
         });
 
+        // Total
         doc.line(15, y, 195, y);
         y += 10;
         doc.setFontSize(14);
@@ -331,18 +343,42 @@ document.addEventListener('DOMContentLoaded', () => {
         y += 15;
         doc.line(15, y, 195, y);
         y += 10;
-        
+
+        // Seção PIX (QR Code e Chave)
+        doc.setFontSize(16);
+        doc.text("Pagamento via PIX", 15, y);
+        y += 10;
+        const qrCanvas = document.createElement('canvas');
+        new QRious({ element: qrCanvas, value: SEU_PIX_COPIA_COLA, size: 200 });
+        const qrImage = qrCanvas.toDataURL('image/png');
+        doc.setFontSize(12);
+        doc.text("Escaneie o QR Code:", 15, y);
+        doc.addImage(qrImage, 'PNG', 15, y + 5, 50, 50);
+        doc.text("Ou copie a chave PIX:", 75, y);
+        doc.setFontSize(10);
+        doc.text(SEU_PIX_COPIA_COLA, 75, y + 10, { maxWidth: 120 });
+
+        y = 250;
+        doc.setFontSize(10);
+        doc.text("Retirada disponível a partir de 09/09/2025", 15, y);
+        doc.text("durante o WorCAP25.", 15, y + 5);
+
         doc.save("pedido_worcap.pdf");
-        
+
+        // Mensagem para o WhatsApp
         let whatsappMessage = `Olá! Gostaria de confirmar meu pedido:\n\n`;
         cart.forEach(item => {
+            // --- MODIFICAÇÃO APLICADA AQUI TAMBÉM PARA CONSISTÊNCIA ---
             let itemName = item.size ? `${item.name} (Tamanho: ${item.size})` : item.name;
-            if(item.isGift) itemName = `${itemName} (BRINDE)`;
+            if(item.isGift) {
+                itemName = `🎉 ${itemName} (BRINDE)`;
+            }
             whatsappMessage += `- ${itemName} (x${item.quantity})\n`;
         });
         whatsappMessage += `\n*Total: R$ ${finalTotal.toFixed(2).replace('.', ',')}*`;
         whatsappMessage += `\n\n*Dados do cliente:*\nNome: ${customerInfo.name}\nTelefone: ${customerInfo.phone}\nEmail: ${customerInfo.email}`;
         whatsappMessage += `\n\n(Verifique o PDF anexo com os detalhes do pedido)`;
+
         const whatsappUrl = `https://wa.me/${SEU_NUMERO_WHATSAPP}?text=${encodeURIComponent(whatsappMessage)}`;
         window.open(whatsappUrl, '_blank');
 
