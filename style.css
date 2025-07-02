@@ -253,9 +253,14 @@ main {
     padding: 1.5rem;
     border-radius: 14px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    align-self: flex-start; /* Alinha o carrinho no topo */
-    position: sticky; /* Faz o carrinho acompanhar o scroll */
+    align-self: flex-start;
+    position: sticky;
     top: 20px;
+    
+    /* --- AJUSTES PARA SCROLL --- */
+    display: flex;
+    flex-direction: column;
+    max-height: calc(60vh - 40px);
 }
 
 #cart-section h2 {
@@ -266,6 +271,7 @@ main {
     margin-bottom: 1rem;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 1rem;
+    flex-shrink: 0; /* Impede que o header encolha */
 }
 
 #cart-section h2 svg { /* Estilo para o ícone SVG */
@@ -275,8 +281,10 @@ main {
 }
 
 #cart-items {
-    max-height: 400px; /* Limita a altura em carrinhos longos */
-    overflow-y: auto; /* Adiciona scroll se necessário */
+    flex-grow: 1; /* Faz esta área ocupar todo o espaço disponível */
+    overflow-y: auto; /* Adiciona scroll APENAS AQUI quando necessário */
+    padding-right: 10px; /* Evita que a barra de scroll cubra o conteúdo */
+    margin-right: -10px; /* Compensa o padding para manter o alinhamento */
 }
 
 .cart-item {
@@ -740,4 +748,196 @@ main {
 @keyframes zoomIn {
     from { transform: scale(0.7); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
+}
+
+
+/* 9. NOVO: COMBOS
+----------------------------------------------------------------*/
+#promo-notifications {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background-color: #e8f5e9; /* Um verde claro */
+    border-radius: 8px;
+    border: 1px solid #a5d6a7;
+    color: #2e7d32;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+
+.gift-selector-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.gift-selector-container label {
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+
+.gift-poster-selector {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    width: 100%;
+    font-size: 1em;
+    background-color: #fff;
+}
+
+
+
+#sidebar-wrapper {
+    flex: 1;
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-self: flex-start;
+    position: sticky;
+    top: 20px;
+}
+
+#promo-card {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-light-color);
+    padding: 1.5rem;
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+}
+
+#promo-card h3 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    color: var(--accent-color);
+}
+
+#promo-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+#promo-card li {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 0.75rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* 11. ESTILOS DO MODAL DE SELEÇÃO DE BRINDE
+----------------------------------------------------------------*/
+#poster-selection-grid {
+    margin-top: 1.5rem;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 10px; /* Espaço para a barra de rolagem */
+}
+
+/* Reutilizando e adaptando o estilo do product-card para o modal */
+#poster-selection-grid .product-card {
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+#poster-selection-grid .product-card:hover {
+    border-color: var(--accent-color);
+}
+
+#poster-selection-grid .product-card img {
+    height: 250px; /* Altura menor para o modal */
+}
+
+#poster-selection-grid .add-to-cart-btn {
+    background-color: #27ae60;
+}
+#poster-selection-grid .add-to-cart-btn:hover {
+    background-color: #0e5e2f;
+}
+
+.close-promo-button {
+    display: none; /* Garante que o botão esteja escondido por padrão */
+}
+
+@media (max-width: 768px) {
+    /* ... (regras existentes para o carrinho mobile) ... */
+
+    /* ### INÍCIO DA REFORMULAÇÃO DO CARD DE PROMOÇÕES MOBILE ### */
+
+    #promo-card {
+        position: fixed;
+        bottom: 20px;
+        left: 20px; /* No canto oposto ao carrinho */
+        width: 60px;
+        height: 60px;
+        padding: 0;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 1000;
+        transition: all 0.3s ease;
+        overflow: hidden;
+        background: var(--accent-color); /* Fundo de destaque */
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    
+    /* Esconde o texto e o botão de fechar no estado de FAB */
+    #promo-card h3,
+    #promo-card ul {
+        display: none;
+    }
+
+    /* Ícone de desconto (tag) para o FAB */
+    #promo-card::before {
+        content: '';
+        display: block;
+        width: 30px;
+        height: 30px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512' fill='white'%3E%3Cpath d='M0 80V224H192V80c0-26.5-21.5-48-48-48H48C21.5 32 0 53.5 0 80zM256 32H320c35.3 0 64 28.7 64 64V256H256V32zM256 288H448V432c0 26.5-21.5 48-48 48H256V288zM192 480H48c-26.5 0-48-21.5-48-48V288H192V480zM320 288c-17.7 0-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32s-14.3-32-32-32z'/%3E%3C/svg%3E");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    
+    /* Quando o FAB for clicado (classe .promo-open) */
+    #promo-card.promo-open {
+        width: 100%;
+        height: 85vh;
+        bottom: 0;
+        left: 0;
+        border-radius: 16px 16px 0 0;
+        padding: 1.5rem;
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        display: block;
+    }
+
+    #promo-card.promo-open::before {
+        display: none; /* Esconde o ícone quando aberto */
+    }
+
+    #promo-card.promo-open h3,
+    #promo-card.promo-open ul {
+        display: block; /* Mostra o conteúdo quando aberto */
+    }
+
+    .close-promo-button {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: transparent;
+        border: none;
+        font-size: 24px;
+        color: white;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    #promo-card.promo-open .close-promo-button {
+        display: block; /* Mostra o botão de fechar quando aberto */
+    }
 }
