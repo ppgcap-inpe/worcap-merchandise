@@ -37,10 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function createProductGrid(products) {
-        const productsByCategory = products.reduce((acc, product) => {
-            (acc[product.category] = acc[product.category] || []).push(product);
-            return acc;
-        }, {});
+    const productsByCategory = products.reduce((acc, product) => {
+        (acc[product.category] = acc[product.category] || []).push(product);
+        return acc;
+    }, {});
 
         return Object.entries(productsByCategory).map(([category, items]) => `
             <div class="category-container">
@@ -49,6 +49,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${items.map(product => {
                         const defaultColor = product.colors ? Object.keys(product.colors)[0] : null;
                         const defaultPhoto = product.colors ? product.colors[defaultColor] : product.photo;
+                        // Botão de medidas apenas para camisetas
+                        const medidasBtn = product.category === 'camiseta'
+                            ? `<button class="medidas-btn" data-id="${product.id}" title="Ver tabela de medidas">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="vertical-align:middle;">
+                                    <rect x="3" y="11" width="18" height="2" rx="1" fill="#FEAE00"/>
+                                    <rect x="7" y="5" width="10" height="2" rx="1" fill="#FEAE00"/>
+                                    <rect x="7" y="17" width="10" height="2" rx="1" fill="#FEAE00"/>
+                                    <circle cx="5" cy="12" r="2" fill="#FEAE00"/>
+                                    <circle cx="19" cy="12" r="2" fill="#FEAE00"/>
+                                </svg>
+                            </button>`
+                            : '';
                         return `
                             <div class="product-card" data-id="${product.id}">
                                 <img src="${defaultPhoto}" alt="${product.name}" class="product-img">
@@ -60,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                             ${Object.entries(product.colors).map(([color, img]) => `
                                                 <button class="color-btn" data-color="${color}" style="background:${color === 'preta' ? '#222' : '#fff'};color:${color === 'preta' ? '#fff' : '#222'};border:2px solid #ccc;">${color.charAt(0).toUpperCase() + color.slice(1)}</button>
                                             `).join('')}
+                                            ${medidasBtn}
                                         </div>
                                     ` : ''}
                                     ${product.category === 'camiseta' && product.sizes 
@@ -85,6 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const addToCartBtn = card.querySelector('.add-to-cart-btn');
             const sizeSelector = card.querySelector('.size-selector');
             const colorSelector = card.querySelector('.color-selector');
+            const medidasBtn = card.querySelector('.medidas-btn');
             const productId = parseInt(addToCartBtn.dataset.id);
             let selectedSize = null;
             let selectedColor = null;
@@ -137,6 +151,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 addToCartBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
                     addToCart(productId, null, selectedColor);
+                });
+            }
+
+            // Medidas
+            if (medidasBtn) {
+                medidasBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    // Exibe imagem de medidas no modal de visualização
+                    elements.productViewerImage.src = "assets/produtos/camisetas/tabela_medidas.jpg";
+                    elements.productViewerModal.style.display = 'flex';
                 });
             }
 
