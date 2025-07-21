@@ -7,7 +7,7 @@ const productsData = [
     price: 75.00,
     category: "camiseta",
     description: "Camiseta 100% algodão, confortável e versátil para o dia a dia.",
-    sizes: ["P", "M", "G", "GG", "XG"],
+    sizes: ["PP", "P", "M", "G", "GG", "XG"],
     colors: {
       preta: "assets/produtos/camisetas/cam_vourukasha_preta.png",
       branca: "assets/produtos/camisetas/cam_vourukasha_branca.png",
@@ -19,7 +19,7 @@ const productsData = [
     price: 75.00,
     category: "camiseta",
     description: "Camiseta 100% algodão, confortável e versátil para o dia a dia.",
-    sizes: ["P", "M", "G", "GG", "XG"],
+    sizes: ["PP", "P", "M", "G", "GG", "XG"],
     colors: {
       preta: "assets/produtos/camisetas/cam_cordel_preta.png",
       branca: "assets/produtos/camisetas/cam_cordel_branca.png",
@@ -31,7 +31,7 @@ const productsData = [
     price: 75.00,
     category: "camiseta",
     description: "Camiseta 100% algodão, confortável e versátil para o dia a dia.",
-    sizes: ["P", "M", "G", "GG", "XG"],
+    sizes: ["PP", "P", "M", "G", "GG", "XG"],
     colors: {
       preta: "assets/produtos/camisetas/cam_delcientifico_preta.png",
       branca: "assets/produtos/camisetas/cam_delcientifico_branca.png",
@@ -43,7 +43,7 @@ const productsData = [
     price: 75.00,
     category: "camiseta",
     description: "Camiseta 100% algodão, confortável e versátil para o dia a dia.",
-    sizes: ["P", "M", "G", "GG", "XG"],
+    sizes: ["PP", "P", "M", "G", "GG", "XG"],
     colors: {
       preta: "assets/produtos/camisetas/cam_delipeano_preta.png",
       branca: "assets/produtos/camisetas/cam_delipeano_branca.png",
@@ -55,7 +55,7 @@ const productsData = [
     price: 75.00,
     category: "camiseta",
     description: "Camiseta 100% algodão, confortável e versátil para o dia a dia.",
-    sizes: ["P", "M", "G", "GG", "XG"],
+    sizes: ["PP", "P", "M", "G", "GG", "XG"],
     colors: {
       preta: "assets/produtos/camisetas/cam_gatocaixa_preta.png",
       branca: "assets/produtos/camisetas/cam_gatocaixa_branca.png",
@@ -66,7 +66,7 @@ const productsData = [
     name: "Camiseta Troca Cultural",
     price: 75.00,
     category: "camiseta",
-    sizes: ["P", "M", "G", "GG", "XG"],
+    sizes: ["PP", "P", "M", "G", "GG", "XG"],
     description: "Camiseta 100% algodão, confortável e versátil para o dia a dia.",
     colors: {
       preta: "assets/produtos/camisetas/cam_trocacultu_preta.png",
@@ -78,7 +78,7 @@ const productsData = [
     name: "Camiseta Schrödinger",
     price: 75.00,
     category: "camiseta",
-    sizes: ["P", "M", "G", "GG", "XG"],
+    sizes: ["PP", "P", "M", "G", "GG", "XG"],
     description: "Camiseta 100% algodão, confortável e versátil para o dia a dia.",
     colors: {
       preta: "assets/produtos/camisetas/cam_einsten_preta.png",
@@ -90,7 +90,7 @@ const productsData = [
     name: "Camiseta Yemoja",
     price: 75.00,
     category: "camiseta",
-    sizes: ["P", "M", "G", "GG", "XG"],
+    sizes: ["PP", "P", "M", "G", "GG", "XG"],
     description: "Camiseta 100% algodão, confortável e versátil para o dia a dia.",
     colors: {
       preta: "assets/produtos/camisetas/cam_yemoja_preta.png",
