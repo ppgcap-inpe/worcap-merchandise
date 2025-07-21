@@ -13,13 +13,20 @@
     <header>
         <img src="assets/wrcap25.png" alt="Logo WorCAP" id="company-logo">
         <div class="header-text">
-            <h1>Merchandise</h1>
+            <h1>Lojinha</h1>
         </div>
     </header>
 
     <main>
         <div id="search-container">
             <input type="text" id="search-input" placeholder="Busque por produtos...">
+        </div>
+        <div id="filter-container">
+            <button class="filter-btn" data-category="todos">Todos</button>
+            <button class="filter-btn" data-category="camiseta">Camisetas</button>
+            <button class="filter-btn" data-category="copo">Copos</button>
+            <button class="filter-btn" data-category="caneca">Canecas</button>
+            <button class="filter-btn" data-category="poster">Poster</button>
         </div>
 
         <section id="products-section"></section>
@@ -77,8 +84,10 @@
                 <button id="copy-pix-key-btn">Copiar Chave PIX</button>
                 <span id="copy-feedback" class="copy-feedback"></span>
             </div>
+            <p class="small-text">Após o pagamento, baixe o pdf do seu pedido e envie junto ao comprovante de pagamento via WhatsApp.</p>
+            <button id="download-pdf-btn">Baixar PDF do Pedido</button>
+            <button id="open-whatsapp-btn">Abrir WhatsApp</button>
             
-            <p class="small-text">Após o pagamento, envie o comprovante no WhatsApp.</p>
         </div>
     </div>
 

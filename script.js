@@ -46,24 +46,35 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="category-container">
                 <h2 class="category-title">${category}</h2>
                 <div class="products-grid">
-                    ${items.map(product => `
-                        <div class="product-card">
-                            <img src="${product.photo}" alt="${product.name}">
-                            <div class="product-info">
-                                <h3>${product.name}</h3>
-                                <p>${product.description}</p>
-                                ${product.category === 'camiseta' && product.sizes 
-                                    ? `<div class="size-selector">${
-                                        product.sizes.map(size => 
-                                            `<button data-size="${size}">${size}</button>`
-                                        ).join('')
-                                    }</div>` 
-                                    : ''}
-                                <div class="product-price">R$ ${product.price.toFixed(2).replace('.', ',')}</div>
-                                <button class="add-to-cart-btn" data-id="${product.id}">Adicionar ao Carrinho</button>
+                    ${items.map(product => {
+                        const defaultColor = product.colors ? Object.keys(product.colors)[0] : null;
+                        const defaultPhoto = product.colors ? product.colors[defaultColor] : product.photo;
+                        return `
+                            <div class="product-card" data-id="${product.id}">
+                                <img src="${defaultPhoto}" alt="${product.name}" class="product-img">
+                                <div class="product-info">
+                                    <h3>${product.name}</h3>
+                                    <p>${product.description}</p>
+                                    ${product.colors ? `
+                                        <div class="color-selector">
+                                            ${Object.entries(product.colors).map(([color, img]) => `
+                                                <button class="color-btn" data-color="${color}" style="background:${color === 'preta' ? '#222' : '#fff'};color:${color === 'preta' ? '#fff' : '#222'};border:2px solid #ccc;">${color.charAt(0).toUpperCase() + color.slice(1)}</button>
+                                            `).join('')}
+                                        </div>
+                                    ` : ''}
+                                    ${product.category === 'camiseta' && product.sizes 
+                                        ? `<div class="size-selector">${
+                                            product.sizes.map(size => 
+                                                `<button data-size="${size}">${size}</button>`
+                                            ).join('')
+                                        }</div>` 
+                                        : ''}
+                                    <div class="product-price">R$ ${product.price.toFixed(2).replace('.', ',')}</div>
+                                    <button class="add-to-cart-btn" data-id="${product.id}">Adicionar ao Carrinho</button>
+                                </div>
                             </div>
-                        </div>
-                    `).join('')}
+                        `;
+                    }).join('')}
                 </div>
             </div>
         `).join('');
@@ -73,13 +84,35 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.product-card').forEach(card => {
             const addToCartBtn = card.querySelector('.add-to-cart-btn');
             const sizeSelector = card.querySelector('.size-selector');
+            const colorSelector = card.querySelector('.color-selector');
             const productId = parseInt(addToCartBtn.dataset.id);
+            let selectedSize = null;
+            let selectedColor = null;
 
+            // Cor
+            if (colorSelector) {
+                const colorButtons = colorSelector.querySelectorAll('.color-btn');
+                selectedColor = colorButtons[0].dataset.color;
+                colorButtons[0].classList.add('selected');
+                const product = productsData.find(p => p.id === productId);
+
+                colorButtons.forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        colorButtons.forEach(btn => btn.classList.remove('selected'));
+                        button.classList.add('selected');
+                        selectedColor = button.dataset.color;
+                        // Troca imagem
+                        const img = card.querySelector('.product-img');
+                        img.src = product.colors[selectedColor];
+                    });
+                });
+            }
+
+            // Tamanho
             if (sizeSelector) { 
-                let selectedSize = null;
                 const sizeButtons = sizeSelector.querySelectorAll('button');
                 addToCartBtn.disabled = true;
-
                 sizeButtons.forEach(button => {
                     button.addEventListener('click', (e) => {
                         e.stopPropagation();
@@ -93,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 addToCartBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
                     if (selectedSize) {
-                        addToCart(productId, selectedSize);
+                        addToCart(productId, selectedSize, selectedColor);
                         sizeButtons.forEach(btn => btn.classList.remove('selected'));
                         addToCartBtn.disabled = true;
                         selectedSize = null;
@@ -103,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else { 
                 addToCartBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
-                    addToCart(productId, null);
+                    addToCart(productId, null, selectedColor);
                 });
             }
 
@@ -116,8 +149,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function addToCart(productId, size = null) {
-        const cartItemId = size ? `${productId}-${size}` : `${productId}`;
+    function addToCart(productId, size = null, color = null) {
+        const cartItemId = size ? `${productId}-${size}-${color || ''}` : `${productId}-${color || ''}`;
         const existingItem = cart.find(item => item.cartItemId === cartItemId);
 
         if (existingItem) {
@@ -129,6 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     ...product, 
                     quantity: 1, 
                     size: size, 
+                    color: color, 
                     cartItemId: cartItemId 
                 });
             }
@@ -143,10 +177,12 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             elements.cartItemsContainer.innerHTML = '';
             cart.forEach(item => {
+                let displayName = item.name;
+                if (item.size) displayName += ` (Tamanho: ${item.size})`;
+                if (item.color) displayName += ` (Cor: ${item.color.charAt(0).toUpperCase() + item.color.slice(1)})`;
+
                 const itemElement = document.createElement('div');
                 itemElement.className = 'cart-item';
-                const displayName = item.size ? `${item.name} (Tamanho: ${item.size})` : item.name;
-
                 itemElement.innerHTML = `
                     <div class="cart-item-info">
                         <span>${displayName}</span>
@@ -208,7 +244,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let y = 85;
         cart.forEach(item => {
             if (y > 260) { doc.addPage(); y = 20; }
-            const itemName = item.size ? `${item.name} (Tamanho: ${item.size})` : item.name;
+            let itemName = item.name;
+            if (item.size) itemName += ` (Tamanho: ${item.size})`;
+            if (item.color) itemName += ` (Cor: ${item.color.charAt(0).toUpperCase() + item.color.slice(1)})`;
             doc.text(`- ${itemName} (x${item.quantity})`, 15, y);
             doc.text(`R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}`, 160, y);
             y += 10;
@@ -255,9 +293,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // WhatsApp
         let whatsappMessage = `Olá! Gostaria de confirmar meu pedido:\n\n`;
         cart.forEach(item => {
-            const itemName = item.size ? `${item.name} (Tamanho: ${item.size})` : item.name;
+            let itemName = item.name;
+            if (item.size) itemName += ` (Tamanho: ${item.size})`;
+            if (item.color) itemName += ` (Cor: ${item.color.charAt(0).toUpperCase() + item.color.slice(1)})`;
             whatsappMessage += `- ${itemName} (x${item.quantity}) - R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}\n`;
         });
+
         whatsappMessage += `\n*Total: R$ ${total.toFixed(2).replace('.', ',')}*`;
         whatsappMessage += `\n\n*Dados do cliente:*\nNome: ${customerInfo.name}\nTelefone: ${customerInfo.phone}\nEmail: ${customerInfo.email}`;
         whatsappMessage += `\n\n(Verifique o PDF anexo com os detalhes do pedido)`;
@@ -266,17 +307,16 @@ document.addEventListener('DOMContentLoaded', () => {
         window.open(whatsappUrl, '_blank');
 
         // Fecha o modal e mostra confirmação
-        elements.checkoutModal.style.display = 'none';
-        elements.confirmationModal.style.display = 'flex';
+        //elements.checkoutModal.style.display = 'none';
+        //elements.confirmationModal.style.display = 'flex';
     }
 
-    function showPaymentModal() {
+    function showPaymentModal(customerInfo) {
         elements.checkoutModal.style.display = 'none';
         elements.paymentModal.style.display = 'flex';
 
         const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
         elements.paymentTotalSpan.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
-        
 
         // Atualiza QR Code
         new QRious({ 
@@ -284,6 +324,15 @@ document.addEventListener('DOMContentLoaded', () => {
             value: SEU_PIX_COPIA_COLA, 
             size: 200 
         });
+
+        // Salva info para botão WhatsApp
+        elements.paymentModal.dataset.customerInfo = JSON.stringify(customerInfo);
+        // WhatsApp: abre imediatamente para evitar bloqueio de popup
+        //generateOrder(customerInfo);
+        // Após 7 segundos, abre WhatsApp e baixa PDF
+        //setTimeout(() => {
+        //    generateOrder(customerInfo);
+        //}, 7000);
     }
 
     function setupCopyPixButton() {
@@ -304,6 +353,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function setupOpenWhatsappButton() {
+        const btn = document.getElementById('open-whatsapp-btn');
+        if (!btn) return;
+        btn.addEventListener('click', () => {
+            const customerInfo = JSON.parse(elements.paymentModal.dataset.customerInfo || '{}');
+            let whatsappMessage = `Olá! Gostaria de confirmar meu pedido:\n\n`;
+            cart.forEach(item => {
+                let itemName = item.name;
+                if (item.size) itemName += ` (Tamanho: ${item.size})`;
+                if (item.color) itemName += ` (Cor: ${item.color.charAt(0).toUpperCase() + item.color.slice(1)})`;
+                whatsappMessage += `- ${itemName} (x${item.quantity}) - R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}\n`;
+            });
+            const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+            whatsappMessage += `\n*Total: R$ ${total.toFixed(2).replace('.', ',')}*`;
+            whatsappMessage += `\n\n*Dados do cliente:*\nNome: ${customerInfo.name}\nTelefone: ${customerInfo.phone}\nEmail: ${customerInfo.email}`;
+            whatsappMessage += `\n\n(Verifique o PDF anexo com os detalhes do pedido)`;
+
+            const whatsappUrl = `https://wa.me/${SEU_NUMERO_WHATSAPP}?text=${encodeURIComponent(whatsappMessage)}`;
+            window.open(whatsappUrl, '_blank');
+        });
+    }
+
     function initEventListeners() {
         // Busca
         elements.searchInput.addEventListener('input', (e) => {
@@ -322,28 +393,6 @@ document.addEventListener('DOMContentLoaded', () => {
             elements.checkoutModal.style.display = 'flex';
         });
 
-        // Modais
-        elements.closeButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const modal = button.closest('.modal');
-                if (modal) {
-                    modal.style.display = 'none';
-                    if (modal.id === 'confirmation-modal') {
-                        showPaymentModal();
-                    }
-                }
-            });
-        });
-
-        window.addEventListener('click', (e) => {
-            if (e.target.classList.contains('modal')) {
-                e.target.style.display = 'none';
-                if (e.target.id === 'confirmation-modal') {
-                    showPaymentModal();
-                }
-            }
-        });
-
         // Formulário
         elements.checkoutForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -352,7 +401,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 phone: document.getElementById('customer-phone').value,
                 email: document.getElementById('customer-email').value
             };
-            generateOrder(customerInfo);
+            showPaymentModal(customerInfo);
+        });
+
+        // Modais
+        elements.closeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const modal = button.closest('.modal');
+                if (modal) {
+                    modal.style.display = 'none';
+                    // Se fechar o modal de pagamento, abre o de confirmação
+                    if (modal.id === 'payment-modal') {
+                        elements.confirmationModal.style.display = 'flex';
+                    }
+                }
+            });
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                e.target.style.display = 'none';
+                if (e.target.id === 'payment-modal') {
+                    elements.confirmationModal.style.display = 'flex';
+                }
+            }
         });
 
         // Carrinho mobile
@@ -368,10 +440,40 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function setupDownloadPdfButton() {
+        const btn = document.getElementById('download-pdf-btn');
+        if (!btn) return;
+        btn.addEventListener('click', () => {
+            const customerInfo = JSON.parse(elements.paymentModal.dataset.customerInfo || '{}');
+            generateOrder(customerInfo);
+        });
+    }
+
+    function setupFilterButtons() {
+        const filterContainer = document.getElementById('filter-container');
+        if (!filterContainer) return;
+        filterContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('filter-btn')) {
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                e.target.classList.add('active');
+                const category = e.target.dataset.category;
+                if (category === 'todos') {
+                    renderProducts(productsData);
+                } else {
+                    const filtered = productsData.filter(p => p.category.toLowerCase() === category);
+                    renderProducts(filtered);
+                }
+            }
+        });
+    }
+
     function init() {
         renderProducts();
         updateCartDisplay();
         setupCopyPixButton();
+        setupOpenWhatsappButton();
+        setupDownloadPdfButton();
+        setupFilterButtons();
         initEventListeners();
     }
 

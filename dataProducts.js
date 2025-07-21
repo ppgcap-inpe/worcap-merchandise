@@ -2,41 +2,102 @@
 
 const productsData = [
   {
-    id: 1,
-    name: "Camiseta Gato na Caixa",
-    photo: "assets/produtos/camisetas/cam_gatocaixa.png",
+    id: 28,
+    name: "NOVO: Camiseta Vourukasha",
     price: 75.00,
     category: "camiseta",
     description: "Camiseta 100% algodão, confortável e versátil para o dia a dia.",
-    sizes: ["P", "M", "G", "GG"] 
+    sizes: ["P", "M", "G", "GG", "XG"],
+    colors: {
+      preta: "assets/produtos/camisetas/cam_vourukasha_preta.png",
+      branca: "assets/produtos/camisetas/cam_vourukasha_branca.png",
+    }
+  },
+  {
+    id: 29,
+    name: "NOVO: Camiseta Cordel",
+    price: 75.00,
+    category: "camiseta",
+    description: "Camiseta 100% algodão, confortável e versátil para o dia a dia.",
+    sizes: ["P", "M", "G", "GG", "XG"],
+    colors: {
+      preta: "assets/produtos/camisetas/cam_cordel_preta.png",
+      branca: "assets/produtos/camisetas/cam_cordel_branca.png",
+    }
+  },
+  {
+    id: 30,
+    name: "NOVO: Camiseta Delírio Científico",
+    price: 75.00,
+    category: "camiseta",
+    description: "Camiseta 100% algodão, confortável e versátil para o dia a dia.",
+    sizes: ["P", "M", "G", "GG", "XG"],
+    colors: {
+      preta: "assets/produtos/camisetas/cam_delcientifico_preta.png",
+      branca: "assets/produtos/camisetas/cam_delcientifico_branca.png",
+    }
+  },
+  {
+    id: 31,
+    name: "NOVO: Camiseta Delírio INPEano",
+    price: 75.00,
+    category: "camiseta",
+    description: "Camiseta 100% algodão, confortável e versátil para o dia a dia.",
+    sizes: ["P", "M", "G", "GG", "XG"],
+    colors: {
+      preta: "assets/produtos/camisetas/cam_delipeano_preta.png",
+      branca: "assets/produtos/camisetas/cam_delipeano_branca.png",
+    }
+  },
+  {
+    id: 1,
+    name: "Camiseta Gato na Caixa",
+    price: 75.00,
+    category: "camiseta",
+    description: "Camiseta 100% algodão, confortável e versátil para o dia a dia.",
+    sizes: ["P", "M", "G", "GG", "XG"],
+    colors: {
+      preta: "assets/produtos/camisetas/cam_gatocaixa_preta.png",
+      branca: "assets/produtos/camisetas/cam_gatocaixa_branca.png",
+    }
   },
   {
     id: 2,
     name: "Camiseta Troca Cultural",
-    photo: "assets/produtos/camisetas/cam_trocacultu.png",
     price: 75.00,
     category: "camiseta",
-    sizes: ["P", "M", "G", "GG"],
-    description: "Camiseta 100% algodão de cor preta, confortável e versátil para o dia a dia"
+    sizes: ["P", "M", "G", "GG", "XG"],
+    description: "Camiseta 100% algodão, confortável e versátil para o dia a dia.",
+    colors: {
+      preta: "assets/produtos/camisetas/cam_trocacultu_preta.png",
+      branca: "assets/produtos/camisetas/cam_trocacultu_branca.png"
+    }
   },
   {
     id: 3,
     name: "Camiseta Schrödinger",
-    photo: "assets/produtos/camisetas/cam_einsten.png",
     price: 75.00,
     category: "camiseta",
-    sizes: ["P", "M", "G", "GG"],
-    description: "Camiseta 100% algodão, confortável e versátil para o dia a dia"
+    sizes: ["P", "M", "G", "GG", "XG"],
+    description: "Camiseta 100% algodão, confortável e versátil para o dia a dia.",
+    colors: {
+      preta: "assets/produtos/camisetas/cam_einsten_preta.png",
+      branca: "assets/produtos/camisetas/cam_einsten_branca.png"
+    }
   },
   {
     id: 4,
     name: "Camiseta Yemoja",
-    photo: "assets/produtos/camisetas/cam_yemoja.png",
     price: 75.00,
     category: "camiseta",
-    sizes: ["P", "M", "G", "GG"],
-    description: "Camiseta 100% algodão, confortável e versátil para o dia a dia"
+    sizes: ["P", "M", "G", "GG", "XG"],
+    description: "Camiseta 100% algodão, confortável e versátil para o dia a dia.",
+    colors: {
+      preta: "assets/produtos/camisetas/cam_yemoja_preta.png",
+      branca: "assets/produtos/camisetas/cam_yemoja_branca.png"
+    }
   },
+
   {
     id: 5,
     name: "Copo 25 anos WorCAP",
@@ -70,6 +131,46 @@ const productsData = [
     description: "Copo de 500ml temático Delírio Inpeano, ilustrando a diversidade de áreas de estudo existente no INPE."
   },
   {
+    id: 32,
+    name: "NOVO: Caneca Yemoja",
+    photo: "assets/produtos/canecas/Caneca_Yemoja.png",
+    price: 45.00,
+    category: "caneca",
+    description: "Caneca de cerâmica de 300ml com estampa Yemoja, ideal para café ou chá.",
+  },
+  {
+    id: 33,
+    name: "NOVO: Caneca Gato na Caixa",
+    photo: "assets/produtos/canecas/Caneca_ GatoCaixaBranco.png",
+    price: 45.00,
+    category: "caneca",
+    description: "Caneca de cerâmica de 300ml com estampa Gato na Caixa, ideal para café ou chá.",
+  },
+  {
+    id: 34,
+    name: "NOVO: Caneca LoTR",
+    photo: "assets/produtos/canecas/Caneca_LoTR.png",
+    price: 45.00,
+    category: "caneca",
+    description: "Caneca de cerâmica de 300ml com estampa Senhor dos Anéis, ideal para café ou chá.",
+  },
+  {
+    id: 35,
+    name: "NOVO: Caneca Schrödinger",
+    photo: "assets/produtos/canecas/Caneca_Schrödinger.png",
+    price: 45.00,
+    category: "caneca",
+    description: "Caneca de cerâmica de 300ml com estampa Schrödinger, ideal para café ou chá.",
+  },
+  {
+    id: 36,
+    name: "NOVO: Caneca Pioneer",
+    photo: "assets/produtos/canecas/Caneca_Pionner.png",
+    price: 45.00,
+    category: "caneca",
+    description: "Caneca de cerâmica de 300ml com estampa Pioneer, ideal para café ou chá.",
+  },
+  {
     id: 9,
     name: "Caneca 25 anos WorCAP",
     photo: "assets/produtos/canecas/Caneca_25 anos.png",
@@ -92,6 +193,14 @@ const productsData = [
     price: 45.00,
     category: "caneca",
     description: "Caneca de cerâmica de 300ml com estampa exclusiva do Delírio Científico, ideal para café ou chá.",
+  },
+  {
+    id: 27,
+    name: "NOVO: Poster - Vourukasha",
+    photo: "assets/produtos/posters/Vourukasha.png",
+    price: 10.00,
+    category: "poster",
+    description: "Poster A3 decorativo, sem moldura.",
   },
   {
     id: 12,
