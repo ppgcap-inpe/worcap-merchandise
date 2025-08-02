@@ -21,8 +21,8 @@ const productsData = [
     description: "Camiseta 100% algodão, unisex, confortável e versátil para o dia a dia.",
     sizes: ["PP", "P", "M", "G", "GG", "XG"],
     colors: {
-      preta: "assets/produtos/camisetas/cam_inpe_preta.png",
-      branca: "assets/produtos/camisetas/cam_inpe_branca.png",
+      preta: "assets/produtos/camisetas/cam_grace_imperatriz_preta.png",
+      branca: "assets/produtos/camisetas/cam_grace_imperatriz_branca.png",
     }
   },
   {
