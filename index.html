@@ -17,17 +17,52 @@
         </div>
     </header>
 
+    <div id="countdown-banner">
+        <p>A loja e as promoções encerram em:</p>
+        <div id="countdown-timer">
+            <div class="time-block"><span id="days">00</span><span>Dias</span></div>
+            <div class="time-block"><span id="hours">00</span><span>Horas</span></div>
+            <div class="time-block"><span id="minutes">00</span><span>Min</span></div>
+            <div class="time-block"><span id="seconds">00</span><span>Seg</span></div>
+        </div>
+    </div>
+
+
     <main>
         <div id="search-container">
             <input type="text" id="search-input" placeholder="Busque por produtos...">
         </div>
+        
         <div id="filter-container">
-            <button class="filter-btn" data-category="todos">Todos</button>
+            <button class="filter-btn active" data-category="todos">Todos</button>
             <button class="filter-btn" data-category="camiseta">Camisetas</button>
             <button class="filter-btn" data-category="copo">Copos</button>
             <button class="filter-btn" data-category="caneca">Canecas</button>
-            <button class="filter-btn" data-category="poster">Poster</button>
+            <button class="filter-btn" data-category="poster">Pôsteres</button>
         </div>
+
+        <section id="combo-section">
+            <div class="combo-card" data-combo-type="combo3">
+                <h3>Combo 3 Amigos</h3>
+                <p>Leve 3 camisetas por um preço especial!</p>
+                <button class="combo-btn">Montar Combo</button>
+            </div>
+            <div class="combo-card" data-combo-type="combo5">
+                <h3>Combo 5 Amigos</h3>
+                <p>Leve 5 camisetas e economize ainda mais.</p>
+                <button class="combo-btn">Montar Combo</button>
+            </div>
+            <div class="combo-card" data-combo-type="kit">
+                <h3>Kit Fan do WorCAP</h3>
+                <p>1 Camiseta + 1 Caneca + 1 Copo e ganhe um pôster.</p>
+                <button class="combo-btn">Montar Kit</button>
+            </div>
+            <div class="combo-card">
+                <h3>Desconto</h3>
+                <p>Compras a partir de R$150,00 ganha poster.</p>
+            </div>
+        </section>
+
 
         <section id="products-section"></section>
 
@@ -49,7 +84,6 @@
         </aside>
     </main>
 
-    <!-- Modal de Checkout -->
     <div id="checkout-modal" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
@@ -72,7 +106,6 @@
         </div>
     </div>
 
-    <!-- Modal de Pagamento -->
     <div id="payment-modal" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
@@ -91,7 +124,6 @@
         </div>
     </div>
 
-    <!-- Modal de Confirmação -->
     <div id="confirmation-modal" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
@@ -107,10 +139,32 @@
         </div>
     </div>
 
-    <!-- Visualizador de Produto -->
     <div id="product-viewer-modal" class="modal product-viewer">
         <span class="close-button viewer-close-button">&times;</span>
         <img class="modal-content-image" id="product-viewer-image" src="" alt="Visualização do Produto">
+    </div>
+
+    <div id="poster-selection-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Escolha seu Pôster de Brinde!</h2>
+            <p>Você ganhou um pôster! Selecione qual você gostaria de adicionar ao seu pedido.</p>
+            <div id="poster-selection-grid" class="products-grid">
+                </div>
+        </div>
+    </div>
+    
+    <div id="combo-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="combo-modal-title">Monte seu Pacote</h2>
+            <div id="combo-modal-grid" class="products-grid">
+                </div>
+            <div class="modal-footer">
+                <span id="combo-status">0/0 selecionados</span>
+                <button id="add-combo-to-cart-btn" disabled>Adicionar ao Carrinho</button>
+            </div>
+        </div>
     </div>
     
     <script src="dataProducts.js"></script>

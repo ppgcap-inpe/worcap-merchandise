@@ -2,11 +2,47 @@
 
 const productsData = [
   {
-    id: 28,
-    name: "NOVO: Camiseta Vourukasha",
+    id: 37,
+    name: "NOVO: Camiseta INPE",
+    price: 65.00,
+    category: "camiseta",
+    description: "Camiseta 100% algodão, unisex, confortável e versátil para o dia a dia.",
+    sizes: ["PP", "P", "M", "G", "GG", "XG"],
+    colors: {
+      preta: "assets/produtos/camisetas/cam_inpe_preta.png",
+      branca: "assets/produtos/camisetas/cam_inpe_branca.png",
+    }
+  },
+  {
+    id: 38,
+    name: "NOVO: Camiseta Chaleira de Russell",
     price: 75.00,
     category: "camiseta",
-    description: "Camiseta 100% algodão, confortável e versátil para o dia a dia.",
+    description: "Camiseta 100% algodão, unisex, confortável e versátil para o dia a dia.",
+    sizes: ["PP", "P", "M", "G", "GG", "XG"],
+    colors: {
+      preta: "assets/produtos/camisetas/cam_russel_preta.png",
+      branca: "assets/produtos/camisetas/cam_russel_branca.png",
+    }
+  },
+  {
+    id: 39,
+    name: "NOVO: Camiseta LoTR",
+    price: 75.00,
+    category: "camiseta",
+    description: "Camiseta 100% algodão, unisex, confortável e versátil para o dia a dia.",
+    sizes: ["PP", "P", "M", "G", "GG", "XG"],
+    colors: {
+      preta: "assets/produtos/camisetas/cam_lotr_preta.png",
+      branca: "assets/produtos/camisetas/cam_lotr_branca.png",
+    }
+  },
+  {
+    id: 28,
+    name: "Camiseta Vourukasha",
+    price: 75.00,
+    category: "camiseta",
+    description: "Camiseta 100% algodão, unisex,  confortável e versátil para o dia a dia.",
     sizes: ["PP", "P", "M", "G", "GG", "XG"],
     colors: {
       preta: "assets/produtos/camisetas/cam_vourukasha_preta.png",
@@ -15,10 +51,10 @@ const productsData = [
   },
   {
     id: 29,
-    name: "NOVO: Camiseta Cordel",
+    name: "Camiseta Cordel",
     price: 75.00,
     category: "camiseta",
-    description: "Camiseta 100% algodão, confortável e versátil para o dia a dia.",
+    description: "Camiseta 100% algodão, unisex, confortável e versátil para o dia a dia.",
     sizes: ["PP", "P", "M", "G", "GG", "XG"],
     colors: {
       preta: "assets/produtos/camisetas/cam_cordel_preta.png",
@@ -27,10 +63,10 @@ const productsData = [
   },
   {
     id: 30,
-    name: "NOVO: Camiseta Delírio Científico",
+    name: "Camiseta Delírio Científico",
     price: 75.00,
     category: "camiseta",
-    description: "Camiseta 100% algodão, confortável e versátil para o dia a dia.",
+    description: "Camiseta 100% algodão, unisex, confortável e versátil para o dia a dia.",
     sizes: ["PP", "P", "M", "G", "GG", "XG"],
     colors: {
       preta: "assets/produtos/camisetas/cam_delcientifico_preta.png",
@@ -39,10 +75,10 @@ const productsData = [
   },
   {
     id: 31,
-    name: "NOVO: Camiseta Delírio INPEano",
+    name: "Camiseta Delírio INPEano",
     price: 75.00,
     category: "camiseta",
-    description: "Camiseta 100% algodão, confortável e versátil para o dia a dia.",
+    description: "Camiseta 100% algodão, unisex, confortável e versátil para o dia a dia.",
     sizes: ["PP", "P", "M", "G", "GG", "XG"],
     colors: {
       preta: "assets/produtos/camisetas/cam_delipeano_preta.png",
@@ -54,7 +90,7 @@ const productsData = [
     name: "Camiseta Gato na Caixa",
     price: 75.00,
     category: "camiseta",
-    description: "Camiseta 100% algodão, confortável e versátil para o dia a dia.",
+    description: "Camiseta 100% algodão, unisex,  confortável e versátil para o dia a dia.",
     sizes: ["PP", "P", "M", "G", "GG", "XG"],
     colors: {
       preta: "assets/produtos/camisetas/cam_gatocaixa_preta.png",
@@ -132,7 +168,7 @@ const productsData = [
   },
   {
     id: 32,
-    name: "NOVO: Caneca Yemoja",
+    name: "Caneca Yemoja",
     photo: "assets/produtos/canecas/Caneca_Yemoja.png",
     price: 45.00,
     category: "caneca",
@@ -140,7 +176,7 @@ const productsData = [
   },
   {
     id: 33,
-    name: "NOVO: Caneca Gato na Caixa",
+    name: "Caneca Gato na Caixa",
     photo: "assets/produtos/canecas/Caneca_ GatoCaixaBranco.png",
     price: 45.00,
     category: "caneca",
@@ -148,7 +184,7 @@ const productsData = [
   },
   {
     id: 34,
-    name: "NOVO: Caneca LoTR",
+    name: "Caneca LoTR",
     photo: "assets/produtos/canecas/Caneca_LoTR.png",
     price: 45.00,
     category: "caneca",
@@ -156,7 +192,7 @@ const productsData = [
   },
   {
     id: 35,
-    name: "NOVO: Caneca Schrödinger",
+    name: "Caneca Schrödinger",
     photo: "assets/produtos/canecas/Caneca_Schrödinger.png",
     price: 45.00,
     category: "caneca",
@@ -164,7 +200,7 @@ const productsData = [
   },
   {
     id: 36,
-    name: "NOVO: Caneca Pioneer",
+    name: "Caneca Pioneer",
     photo: "assets/produtos/canecas/Caneca_Pionner.png",
     price: 45.00,
     category: "caneca",
