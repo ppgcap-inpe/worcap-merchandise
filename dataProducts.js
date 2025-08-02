@@ -14,7 +14,7 @@ const productsData = [
     }
   },
   {
-    id: 38,
+    id: 55,
     name: "NOVO: Camiseta Grace Hopper - A Imperatriz",
     price: 75.00,
     category: "camiseta",
