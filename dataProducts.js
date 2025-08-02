@@ -15,6 +15,18 @@ const productsData = [
   },
   {
     id: 38,
+    name: "NOVO: Camiseta Grace Hopper - A Imperatriz",
+    price: 75.00,
+    category: "camiseta",
+    description: "Camiseta 100% algodão, unisex, confortável e versátil para o dia a dia.",
+    sizes: ["PP", "P", "M", "G", "GG", "XG"],
+    colors: {
+      preta: "assets/produtos/camisetas/cam_inpe_preta.png",
+      branca: "assets/produtos/camisetas/cam_inpe_branca.png",
+    }
+  },
+  {
+    id: 38,
     name: "NOVO: Camiseta Chaleira de Russell",
     price: 75.00,
     category: "camiseta",
@@ -231,8 +243,32 @@ const productsData = [
     description: "Caneca de cerâmica de 300ml com estampa exclusiva do Delírio Científico, ideal para café ou chá.",
   },
   {
+    id: 39,
+    name: "NOVO: Poster - Chaleira de Russel",
+    photo: "assets/produtos/posters/ChaleiraRussell.png",
+    price: 10.00,
+    category: "poster",
+    description: "Poster A3 decorativo, sem moldura.",
+  },
+  {
+    id: 40,
+    name: "NOVO: Poster - Grace Hopper A Imperatriz",
+    photo: "assets/produtos/posters/Imperatriz.png",
+    price: 10.00,
+    category: "poster",
+    description: "Poster A3 decorativo, sem moldura.",
+  },
+  {
+    id: 41,
+    name: "NOVO: Poster - Defesa de Tese",
+    photo: "assets/produtos/posters/DefesaTese.png",
+    price: 10.00,
+    category: "poster",
+    description: "Poster A3 decorativo, sem moldura.",
+  },
+  {
     id: 27,
-    name: "NOVO: Poster - Vourukasha",
+    name: "Poster - Vourukasha",
     photo: "assets/produtos/posters/Vourukasha.png",
     price: 10.00,
     category: "poster",
