@@ -495,6 +495,10 @@ main {
     align-self: flex-start;
     position: sticky;
     top: 20px;
+    /* Linhas adicionadas/modificadas abaixo */
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 40px);
 }
 #cart-section h2 {
     display: flex;
@@ -504,9 +508,10 @@ main {
     margin-bottom: 1rem;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 1rem;
+    flex-shrink: 0;
 }
 #cart-section h2 svg { width: 28px; height: 28px; fill: var(--primary-color); }
-#cart-items { max-height: 400px; overflow-y: auto; }
+#cart-items { max-height: 400px; overflow-y: auto; min-height: 50px; flex-grow: 1; }
 .cart-item {
     display: flex;
     justify-content: space-between;
@@ -531,9 +536,10 @@ main {
     text-align: center;
 }
 #cart-summary {
-    margin-top: 1.5rem;
+    margin-top: auto;
     padding-top: 1.5rem;
     border-top: 1px solid var(--border-color);
+    flex-shrink: 0;
 }
 #cart-summary p {
     display: flex;
@@ -574,9 +580,9 @@ main {
 .modal-content {
     background-color: #fefefe;
     margin: 5% auto; /* Reduz margem para melhor visualização */
-    padding: 2rem;
+    padding: 1.5rem 1rem;
     border-radius: 12px;
-    width: 90%;
+    width: 95%;
     max-width: 600px; /* Aumenta um pouco para combos */
     position: relative;
     text-align: center;
@@ -584,7 +590,7 @@ main {
     box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     display: flex; /* ATUALIZADO */
     flex-direction: column; /* ATUALIZADO */
-    max-height: 90vh; /* ATUALIZADO - Limita altura do modal */
+    max-height: 95vh;
 }
 .close-button {
     color: #aaa;
@@ -595,6 +601,18 @@ main {
     font-weight: bold;
     cursor: pointer;
 }
+#combo-modal .modal-content {
+    max-height: 90vh;
+}
+
+#combo-modal-grid {
+    gap: 1rem; /* Reduz o espaçamento entre os cards */
+}
+
+#combo-selections-display {
+    max-height: 120px; /* Define uma altura máxima para a lista de itens selecionados */
+}
+
 /* ATUALIZADO: Habilita scroll na grid de produtos dentro do modal */
 #poster-selection-grid, #combo-modal-grid {
     overflow-y: auto;
@@ -720,6 +738,71 @@ main {
         text-align: center; cursor: pointer; z-index: 1001; color: var(--text-color);
     }
     #cart-section.cart-open::after { display: none; }
+
+    /* --- AJUSTE: Otimiza o padding e altura dos modais em telas pequenas --- */
+    .modal-content {
+        padding: 1.5rem 1rem;
+        width: 95%;
+        max-height: 95vh;
+    }
+
+    /* --- AJUSTE 1 & 2: Melhora a visibilidade do modal de combos e itens selecionados --- */
+    #combo-modal .modal-content {
+        max-height: 90vh;
+    }
+    #combo-modal-grid {
+        gap: 1rem; /* Reduz o espaçamento entre os cards */
+    }
+    #combo-selections-display {
+        max-height: 120px; /* Define uma altura máxima para a lista de itens selecionados */
+    }
+
+    /* --- AJUSTE 4: Redimensiona elementos no modal de pagamento --- */
+    #payment-modal #qr-code {
+        max-width: 180px;
+        height: auto;
+    }
+    #payment-modal button {
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
+
+
+    #cart-section.cart-open {
+        /* Modificado de 'display: block' para 'display: flex' */
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 85vh;
+        bottom: 0;
+        right: 0;
+        border-radius: 16px 16px 0 0;
+        padding: 1.5rem;
+        background-color: var(--card-bg-color);
+    }
+
+    #cart-section.cart-open #cart-items {
+        display: block;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        flex-grow: 1; /* Faz a lista de itens ocupar o espaço disponível */
+        min-height: 50px; /* Garante uma altura mínima */
+        max-height: none; /* Remove a altura máxima fixa que causava o problema */
+    }
+
+    #cart-section.cart-open #cart-summary {
+        display: block;
+        margin-top: auto; /* Empurra o sumário para a base do contêiner flex */
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-color);
+        flex-shrink: 0; /* Impede que o sumário encolha */
+    }
+
+
+    /* --- AJUSTE 2: Aumenta a altura da seção de itens selecionados no combo --- */
+    #combo-selections-display {
+        max-height: 280px; /* Aumentado de 120px para 180px para dar mais visibilidade */
+    }
 }
 
 /* 9. VISUALIZADOR DE PRODUTO
