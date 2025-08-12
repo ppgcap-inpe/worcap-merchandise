@@ -3,7 +3,7 @@
 const productsData = [
   {
     id: 37,
-    name: "NOVO: Camiseta INPE",
+    name: "ESGOTADO! Camiseta INPE",
     price: 65.00,
     category: "camiseta",
     description: "Camiseta 100% algodão, unisex, confortável e versátil para o dia a dia.",
@@ -15,7 +15,7 @@ const productsData = [
   },
   {
     id: 55,
-    name: "NOVO: Camiseta Grace Hopper - A Imperatriz",
+    name: "ESGOTADO! Camiseta Grace Hopper - A Imperatriz",
     price: 75.00,
     category: "camiseta",
     description: "Camiseta 100% algodão, unisex, confortável e versátil para o dia a dia.",
@@ -27,7 +27,7 @@ const productsData = [
   },
   {
     id: 38,
-    name: "NOVO: Camiseta Chaleira de Russell",
+    name: "ESGOTADO! Camiseta Chaleira de Russell",
     price: 75.00,
     category: "camiseta",
     description: "Camiseta 100% algodão, unisex, confortável e versátil para o dia a dia.",
@@ -39,7 +39,7 @@ const productsData = [
   },
   {
     id: 39,
-    name: "NOVO: Camiseta LoTR",
+    name: "ESGOTADO! Camiseta LoTR",
     price: 75.00,
     category: "camiseta",
     description: "Camiseta 100% algodão, unisex, confortável e versátil para o dia a dia.",
@@ -51,7 +51,7 @@ const productsData = [
   },
   {
     id: 28,
-    name: "Camiseta Vourukasha",
+    name: "ESGOTADO! Camiseta Vourukasha",
     price: 75.00,
     category: "camiseta",
     description: "Camiseta 100% algodão, unisex,  confortável e versátil para o dia a dia.",
@@ -63,7 +63,7 @@ const productsData = [
   },
   {
     id: 29,
-    name: "Camiseta Cordel",
+    name: "ESGOTADO! Camiseta Cordel",
     price: 75.00,
     category: "camiseta",
     description: "Camiseta 100% algodão, unisex, confortável e versátil para o dia a dia.",
@@ -75,7 +75,7 @@ const productsData = [
   },
   {
     id: 30,
-    name: "Camiseta Delírio Científico",
+    name: "ESGOTADO! Camiseta Delírio Científico",
     price: 75.00,
     category: "camiseta",
     description: "Camiseta 100% algodão, unisex, confortável e versátil para o dia a dia.",
@@ -87,7 +87,7 @@ const productsData = [
   },
   {
     id: 31,
-    name: "Camiseta Delírio INPEano",
+    name: "ESGOTADO! Camiseta Delírio INPEano",
     price: 75.00,
     category: "camiseta",
     description: "Camiseta 100% algodão, unisex, confortável e versátil para o dia a dia.",
@@ -99,7 +99,7 @@ const productsData = [
   },
   {
     id: 1,
-    name: "Camiseta Gato na Caixa",
+    name: "ESGOTADO! Camiseta Gato na Caixa",
     price: 75.00,
     category: "camiseta",
     description: "Camiseta 100% algodão, unisex,  confortável e versátil para o dia a dia.",
@@ -111,7 +111,7 @@ const productsData = [
   },
   {
     id: 2,
-    name: "Camiseta Troca Cultural",
+    name: "ESGOTADO! Camiseta Troca Cultural",
     price: 75.00,
     category: "camiseta",
     sizes: ["PP", "P", "M", "G", "GG", "XG"],
@@ -123,7 +123,7 @@ const productsData = [
   },
   {
     id: 3,
-    name: "Camiseta Schrödinger",
+    name: "ESGOTADO! Camiseta Schrödinger",
     price: 75.00,
     category: "camiseta",
     sizes: ["PP", "P", "M", "G", "GG", "XG"],
@@ -135,7 +135,7 @@ const productsData = [
   },
   {
     id: 4,
-    name: "Camiseta Yemoja",
+    name: "ESGOTADO! Camiseta Yemoja",
     price: 75.00,
     category: "camiseta",
     sizes: ["PP", "P", "M", "G", "GG", "XG"],
