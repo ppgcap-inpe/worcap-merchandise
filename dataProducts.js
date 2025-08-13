@@ -3,7 +3,7 @@
 const productsData = [
   {
     id: 37,
-    name: "Camiseta INPE",
+    name: "ESGOTADO! Camiseta INPE",
     price: 65.00,
     category: "camiseta",
     description: "Camiseta 100% algodão, unisex, confortável e versátil para o dia a dia.",
@@ -15,7 +15,7 @@ const productsData = [
   },
   {
     id: 55,
-    name: "Camiseta Grace Hopper - A Imperatriz",
+    name: "ESGOTADO! Camiseta Grace Hopper - A Imperatriz",
     price: 75.00,
     category: "camiseta",
     description: "Camiseta 100% algodão, unisex, confortável e versátil para o dia a dia.",
@@ -27,7 +27,7 @@ const productsData = [
   },
   {
     id: 38,
-    name: "Camiseta Chaleira de Russell",
+    name: "ESGOTADO! Camiseta Chaleira de Russell",
     price: 75.00,
     category: "camiseta",
     description: "Camiseta 100% algodão, unisex, confortável e versátil para o dia a dia.",
@@ -39,7 +39,7 @@ const productsData = [
   },
   {
     id: 39,
-    name: "Camiseta LoTR",
+    name: "ESGOTADO! Camiseta LoTR",
     price: 75.00,
     category: "camiseta",
     description: "Camiseta 100% algodão, unisex, confortável e versátil para o dia a dia.",
@@ -51,7 +51,7 @@ const productsData = [
   },
   {
     id: 28,
-    name: "Camiseta Vourukasha",
+    name: "ESGOTADO! Camiseta Vourukasha",
     price: 75.00,
     category: "camiseta",
     description: "Camiseta 100% algodão, unisex,  confortável e versátil para o dia a dia.",
@@ -63,7 +63,7 @@ const productsData = [
   },
   {
     id: 29,
-    name: "Camiseta Cordel",
+    name: "ESGOTADO! Camiseta Cordel",
     price: 75.00,
     category: "camiseta",
     description: "Camiseta 100% algodão, unisex, confortável e versátil para o dia a dia.",
@@ -75,7 +75,7 @@ const productsData = [
   },
   {
     id: 30,
-    name: "Camiseta Delírio Científico",
+    name: "ESGOTADO! Camiseta Delírio Científico",
     price: 75.00,
     category: "camiseta",
     description: "Camiseta 100% algodão, unisex, confortável e versátil para o dia a dia.",
@@ -87,7 +87,7 @@ const productsData = [
   },
   {
     id: 31,
-    name: "Camiseta Delírio INPEano",
+    name: "ESGOTADO! Camiseta Delírio INPEano",
     price: 75.00,
     category: "camiseta",
     description: "Camiseta 100% algodão, unisex, confortável e versátil para o dia a dia.",
@@ -99,7 +99,7 @@ const productsData = [
   },
   {
     id: 1,
-    name: "Camiseta Gato na Caixa",
+    name: "ESGOTADO! Camiseta Gato na Caixa",
     price: 75.00,
     category: "camiseta",
     description: "Camiseta 100% algodão, unisex,  confortável e versátil para o dia a dia.",
@@ -111,7 +111,7 @@ const productsData = [
   },
   {
     id: 2,
-    name: "Camiseta Troca Cultural",
+    name: "ESGOTADO! Camiseta Troca Cultural",
     price: 75.00,
     category: "camiseta",
     sizes: ["PP", "P", "M", "G", "GG", "XG"],
@@ -123,7 +123,7 @@ const productsData = [
   },
   {
     id: 3,
-    name: "Camiseta Schrödinger",
+    name: "ESGOTADO! Camiseta Schrödinger",
     price: 75.00,
     category: "camiseta",
     sizes: ["PP", "P", "M", "G", "GG", "XG"],
@@ -135,7 +135,7 @@ const productsData = [
   },
   {
     id: 4,
-    name: "Camiseta Yemoja",
+    name: "ESGOTADO! Camiseta Yemoja",
     price: 75.00,
     category: "camiseta",
     sizes: ["PP", "P", "M", "G", "GG", "XG"],
@@ -148,7 +148,7 @@ const productsData = [
 
   {
     id: 5,
-    name: "Copo 25 anos WorCAP",
+    name: "ESGOTADO! Copo 25 anos WorCAP",
     photo: "assets/produtos/copos/25_anos.gif",
     price: 15.00,
     category: "copo",
@@ -156,7 +156,7 @@ const productsData = [
   },
   {
     id: 6,
-    name: "Copo Cordel",
+    name: "ESGOTADO! Copo Cordel",
     photo: "assets/produtos/copos/Cordel.gif",
     price: 15.00,
     category: "copo",
@@ -164,7 +164,7 @@ const productsData = [
   },
   {
     id: 7,
-    name: "Copo Delírio Científico",
+    name: "ESGOTADO! Copo Delírio Científico",
     photo: "assets/produtos/copos/Delírio_científico_Translúcio.gif",
     price: 15.00,
     category: "copo",
@@ -172,7 +172,7 @@ const productsData = [
   },
   {
     id: 8,
-    name: "Copo Delírio Inpeano",
+    name: "ESGOTADO! Copo Delírio Inpeano",
     photo: "assets/produtos/copos/Delírio_Inpeano.gif",
     price: 15.00,
     category: "copo",
@@ -180,7 +180,7 @@ const productsData = [
   },
   {
     id: 32,
-    name: "Caneca Yemoja",
+    name: "ESGOTADO! Caneca Yemoja",
     photo: "assets/produtos/canecas/Caneca_Yemoja.png",
     price: 45.00,
     category: "caneca",
@@ -188,7 +188,7 @@ const productsData = [
   },
   {
     id: 33,
-    name: "Caneca Gato na Caixa",
+    name: "ESGOTADO! Caneca Gato na Caixa",
     photo: "assets/produtos/canecas/Caneca_ GatoCaixaBranco.png",
     price: 45.00,
     category: "caneca",
@@ -196,7 +196,7 @@ const productsData = [
   },
   {
     id: 34,
-    name: "Caneca LoTR",
+    name: "ESGOTADO! Caneca LoTR",
     photo: "assets/produtos/canecas/Caneca_LoTR.png",
     price: 45.00,
     category: "caneca",
@@ -204,7 +204,7 @@ const productsData = [
   },
   {
     id: 35,
-    name: "Caneca Schrödinger",
+    name: "ESGOTADO! Caneca Schrödinger",
     photo: "assets/produtos/canecas/Caneca_Schrödinger.png",
     price: 45.00,
     category: "caneca",
@@ -212,7 +212,7 @@ const productsData = [
   },
   {
     id: 36,
-    name: "Caneca Pioneer",
+    name: "ESGOTADO! Caneca Pioneer",
     photo: "assets/produtos/canecas/Caneca_Pionner.png",
     price: 45.00,
     category: "caneca",
@@ -220,7 +220,7 @@ const productsData = [
   },
   {
     id: 9,
-    name: "Caneca 25 anos WorCAP",
+    name: "ESGOTADO! Caneca 25 anos WorCAP",
     photo: "assets/produtos/canecas/Caneca_25 anos.png",
     price: 45.00,
     category: "caneca",
@@ -228,7 +228,7 @@ const productsData = [
   },
   {
     id: 10,
-    name: "Caneca Cordel",
+    name: "ESGOTADO! Caneca Cordel",
     photo: "assets/produtos/canecas/Caneca_Cordel.png",
     price: 45.00,
     category: "caneca",
@@ -236,7 +236,7 @@ const productsData = [
   },
   {
     id: 11,
-    name: "Caneca Delírio Científico",
+    name: "ESGOTADO! Caneca Delírio Científico",
     photo: "assets/produtos/canecas/Caneca_Delírio_Científico.png",
     price: 45.00,
     category: "caneca",
@@ -244,7 +244,7 @@ const productsData = [
   },
   {
     id: 39,
-    name: "NOVO: Poster - Chaleira de Russel",
+    name: "ESGOTADO! Poster - Chaleira de Russel",
     photo: "assets/produtos/posters/ChaleiraRussell.png",
     price: 10.00,
     category: "poster",
@@ -252,7 +252,7 @@ const productsData = [
   },
   {
     id: 40,
-    name: "NOVO: Poster - Grace Hopper A Imperatriz",
+    name: "ESGOTADO! Poster - Grace Hopper A Imperatriz",
     photo: "assets/produtos/posters/Imperatriz.png",
     price: 10.00,
     category: "poster",
@@ -260,7 +260,7 @@ const productsData = [
   },
   {
     id: 41,
-    name: "NOVO: Poster - Defesa de Tese",
+    name: "ESGOTADO! Poster - Defesa de Tese",
     photo: "assets/produtos/posters/DefesaTese.png",
     price: 10.00,
     category: "poster",
@@ -268,7 +268,7 @@ const productsData = [
   },
   {
     id: 27,
-    name: "Poster - Vourukasha",
+    name: "ESGOTADO! Poster - Vourukasha",
     photo: "assets/produtos/posters/Vourukasha.png",
     price: 10.00,
     category: "poster",
@@ -276,7 +276,7 @@ const productsData = [
   },
   {
     id: 12,
-    name: "Poster Cordel - Tradicional",
+    name: "ESGOTADO! Poster Cordel - Tradicional",
     photo: "assets/produtos/posters/ Cordel.png",
     price: 10.00,
     category: "poster",
@@ -284,7 +284,7 @@ const productsData = [
   },
   {
     id: 13,
-    name: "Poster Cordel Foil",
+    name: "ESGOTADO! Poster Cordel Foil",
     photo: "assets/produtos/posters/ Cordel Foil.png",
     price: 10.00,
     category: "poster",
@@ -292,7 +292,7 @@ const productsData = [
   },
   {
     id: 14,
-    name: "Poster Da Lama ao Caos",
+    name: "ESGOTADO! Poster Da Lama ao Caos",
     photo: "assets/produtos/posters/ Da Lama ao Caos.png",
     price: 10.00,
     category: "poster",
@@ -300,7 +300,7 @@ const productsData = [
   },
   {
     id: 15,
-    name: "Poster Delírio Científico",
+    name: "ESGOTADO! Poster Delírio Científico",
     photo: "assets/produtos/posters/ Delírio Científico.png",
     price: 10.00,
     category: "poster",
@@ -308,7 +308,7 @@ const productsData = [
   },
   {
     id: 16,
-    name: "Poster Delírio Inpeano BW",
+    name: "ESGOTADO! Poster Delírio Inpeano BW",
     photo: "assets/produtos/posters/ Delírio Inpeano BW.png",
     price: 10.00,
     category: "poster",
@@ -316,7 +316,7 @@ const productsData = [
   },
   {
     id: 17,
-    name: "Poster Delírio Inpeano",
+    name: "ESGOTADO! Poster Delírio Inpeano",
     photo: "assets/produtos/posters/ Delírio Inpeano.png",
     price: 10.00,
     category: "poster",
@@ -324,7 +324,7 @@ const productsData = [
   },
   {
     id: 18,
-    name: "Poster Gato na Caixa",
+    name: "ESGOTADO! Poster Gato na Caixa",
     photo: "assets/produtos/posters/ Gato na Caixa.png",
     price: 10.00,
     category: "poster",
@@ -332,7 +332,7 @@ const productsData = [
   },
   {
     id: 19,
-    name: "Poster LoTR",
+    name: "ESGOTADO! Poster LoTR",
     photo: "assets/produtos/posters/ LoTR.png",
     price: 10.00,
     category: "poster",
@@ -340,7 +340,7 @@ const productsData = [
   },
   {
     id: 20,
-    name: "Poster Macaconv",
+    name: "ESGOTADO! Poster Macaconv",
     photo: "assets/produtos/posters/ Mamaco.png",
     price: 10.00,
     category: "poster",
@@ -348,7 +348,7 @@ const productsData = [
   },
   {
     id: 21,
-    name: "Poster Método Científico",
+    name: "ESGOTADO! Poster Método Científico",
     photo: "assets/produtos/posters/ Método Científico.png",
     price: 10.00,
     category: "poster",
@@ -356,7 +356,7 @@ const productsData = [
   },
   {
     id: 22,
-    name: "Poster Pioneer 1",
+    name: "ESGOTADO! Poster Pioneer 1",
     photo: "assets/produtos/posters/ Pioneer 1.png",
     price: 10.00,
     category: "poster",
@@ -364,7 +364,7 @@ const productsData = [
   },
   {
     id: 23,
-    name: "Poster Pioneer 2",
+    name: "ESGOTADO! Poster Pioneer 2",
     photo: "assets/produtos/posters/ Pioneer 2.png",
     price: 10.00,
     category: "poster",
@@ -372,7 +372,7 @@ const productsData = [
   },
   {
     id: 24,
-    name: "Poster Schrödinger",
+    name: "ESGOTADO! Poster Schrödinger",
     photo: "assets/produtos/posters/ Schrodinger.png",
     price: 10.00,
     category: "poster",
@@ -380,7 +380,7 @@ const productsData = [
   },
   {
     id: 25,
-    name: "Poster Troca Cultural",
+    name: "ESGOTADO! Poster Troca Cultural",
     photo: "assets/produtos/posters/ Troca Cultural.png",
     price: 10.00,
     category: "poster",
@@ -388,7 +388,7 @@ const productsData = [
   },
   {
     id: 26,
-    name: "Poster Yemoja",
+    name: "ESGOTADO! Poster Yemoja",
     photo: "assets/produtos/posters/ Yemoja.png",
     price: 10.00,
     category: "poster",
